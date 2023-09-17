@@ -34,7 +34,7 @@ export const Header = memo<HeaderProps>(
 
       return (
         <TouchableOpacity onPress={handlePressLeftButton}>
-          <Icon name="home" size={32} color={palette[leftIconColor]} />
+          <Icon name="home" size={24} color={palette[leftIconColor]} />
         </TouchableOpacity>
       );
     };

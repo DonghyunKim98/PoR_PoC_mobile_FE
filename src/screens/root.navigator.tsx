@@ -1,10 +1,12 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import { AssetListScreen } from './asset-list';
 import { StartPoRScreen } from './start-por';
 
 export type RootStackParamList = {
   StartPoRScreen: undefined;
+  AssetListScreen: undefined;
 };
 
 type RootNavigatorProps = {};
@@ -18,6 +20,7 @@ export const RootNavigator = ({}: RootNavigatorProps) => {
         initialRouteName="StartPoRScreen"
         screenOptions={{ headerShown: false }}>
         <Stack.Screen name="StartPoRScreen" component={StartPoRScreen} />
+        <Stack.Screen name="AssetListScreen" component={AssetListScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

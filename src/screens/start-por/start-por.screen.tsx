@@ -1,5 +1,5 @@
 import { Box, Row, Rows, Stack } from '@mobily/stacks';
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useTranslation } from 'react-i18next';
 import { Image, TouchableOpacity } from 'react-native';
@@ -24,7 +24,13 @@ export type StartPoRScreenNavigationRouteProps = RouteProp<
 >;
 
 export const StartPoRScreen = ({}: StartPoRScreenProps) => {
+  const navigation = useNavigation<StartPoRScreenNavigationProps>();
+
   const { t } = useTranslation();
+
+  const handlePressCTAButton = () => {
+    navigation.navigate('AssetListScreen');
+  };
 
   return (
     <>
@@ -75,7 +81,7 @@ export const StartPoRScreen = ({}: StartPoRScreenProps) => {
                     </Text>
                   </Stack>
                 </Stack>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handlePressCTAButton}>
                   <Box
                     style={{
                       backgroundColor: palette['primary'],
