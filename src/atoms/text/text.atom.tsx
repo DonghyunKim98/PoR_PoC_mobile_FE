@@ -17,7 +17,16 @@ export type fontWeightType =
   | '350'
   | '200'
   | '100';
-export type fontSizeType = '8' | '12' | '14' | '16' | '18' | '20' | '23' | '28';
+export type fontSizeType =
+  | '8'
+  | '10'
+  | '12'
+  | '14'
+  | '16'
+  | '18'
+  | '20'
+  | '23'
+  | '28';
 export type fontColorType = keyof typeof palette;
 
 type TextProps = RNTextProps & {

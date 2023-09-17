@@ -1,6 +1,7 @@
 import { Box, Stack } from '@mobily/stacks';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { TouchableOpacity } from 'react-native';
 
 import { Icon, Text } from '@/atoms';
 import { palette } from '@/utils';
@@ -30,22 +31,43 @@ export const AssetPoRConfirmMyInfoComponent = memo(
               {t('assetProConfirmScreen_myInfo_isIncluded_true')}
             </Text>
           </Stack>
-          <Stack horizontal space={6} align="center">
-            <Icon
-              name="check-circle"
-              size={16}
-              color={isCoincided ? palette['white'] : palette['error']}
-            />
-            <Text
-              fontWeight="700"
-              fontSize="14"
-              lineHeight={14}
-              color={isCoincided ? 'white' : 'error'}>
-              {isCoincided
-                ? t('assetProConfirmScreen_myInfo_isCoincided_true')
-                : t('assetProConfirmScreen_myInfo_isCoincided_false')}
-            </Text>
-          </Stack>
+          <Box direction="row" alignX="between">
+            <Stack horizontal space={6} align="center">
+              <Icon
+                name="check-circle"
+                size={16}
+                color={isCoincided ? palette['white'] : palette['error']}
+              />
+              <Text
+                fontWeight="700"
+                fontSize="14"
+                lineHeight={14}
+                color={isCoincided ? 'white' : 'error'}>
+                {isCoincided
+                  ? t('assetProConfirmScreen_myInfo_isCoincided_true')
+                  : t('assetProConfirmScreen_myInfo_isCoincided_false')}
+              </Text>
+            </Stack>
+            {!isCoincided && (
+              <TouchableOpacity>
+                <Box
+                  paddingX={9}
+                  paddingY={5}
+                  style={{
+                    backgroundColor: palette['error'],
+                    borderRadius: 50,
+                  }}>
+                  <Text
+                    fontWeight="700"
+                    fontSize="10"
+                    lineHeight={10}
+                    color="white">
+                    {t('assetProConfirmScreen_myInfo_report')}
+                  </Text>
+                </Box>
+              </TouchableOpacity>
+            )}
+          </Box>
         </Stack>
         <Box
           direction="row"
