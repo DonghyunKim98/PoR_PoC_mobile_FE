@@ -23,8 +23,8 @@ export type fontColorType = keyof typeof palette;
 type TextProps = RNTextProps & {
   fontWeight: fontWeightType;
   fontSize: fontSizeType;
-  color: fontColorType;
   lineHeight: number;
+  color: fontColorType;
   letterSpacing?: number;
   textAlignment?: textAligns;
 };

@@ -1,5 +1,6 @@
 {
   "title": "리엑트 i18next 를 이용해봅시다.",
   "StartPoRScreen_header_title": "PoR 확인",
-  "StartPoRScreen_content_title": "준비금 증명을 위해\n내 자산을 생성하세요."
+  "StartPoRScreen_content_title": "준비금 증명을 위해\n내 자산을 생성하세요.",
+  "StartPoRScreen_content_warning": "한 번 생성한 내 자산 데이터는 재 접속 시 저장되어 있지 않습니다"
 }
