@@ -7,6 +7,7 @@ export const palette = {
   error: '#FF6388',
   black: '#000000',
   green: '#ACFF76',
+  'green-outline': '#64FF00',
   'gray-900': '#070B22',
   'gray-800': '#7F7F80',
   'gray-700': '#8C959A',

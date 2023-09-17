@@ -67,7 +67,7 @@ export const AssetPoRConfirmScreen = ({}: AssetPoRConfirmScreenProps) => {
         leftIconColor="white"
         backgroundColor="primary"
       />
-      <ScrollView contentContainerStyle={{ flex: 1 }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <Stack
           space={20}
           align="center"

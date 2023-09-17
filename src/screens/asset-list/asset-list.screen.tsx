@@ -10,7 +10,8 @@ import { AssetListAssetItem } from './components';
 
 import { Header } from '@/atoms';
 import { useGetReadAssetsQuery } from '@/hooks';
-import { BasicLayout, LoadingPage } from '@/layouts';
+import { LoadingPage } from '@/layouts';
+import { palette } from '@/utils';
 
 type AssetListScreenProps = {};
 
@@ -44,17 +45,23 @@ export const AssetListScreen = ({}: AssetListScreenProps) => {
         leftIconColor="primary"
         backgroundColor="white"
       />
-      <BasicLayout>
-        <FlatList
-          data={data?.data}
-          renderItem={({ item, index }) => {
-            return (
-              <AssetListAssetItem {...item} assetId={(index + 1).toString()} />
-            );
-          }}
-          ItemSeparatorComponent={() => <Box style={{ height: 10 }} />}
-        />
-      </BasicLayout>
+
+      <FlatList
+        data={data?.data}
+        style={{
+          width: '100%',
+          backgroundColor: palette['white'],
+          paddingHorizontal: 24,
+          paddingVertical: 10,
+        }}
+        contentContainerStyle={{ flexGrow: 1 }}
+        renderItem={({ item, index }) => {
+          return (
+            <AssetListAssetItem {...item} assetId={(index + 1).toString()} />
+          );
+        }}
+        ItemSeparatorComponent={() => <Box style={{ height: 10 }} />}
+      />
     </>
   );
 };
