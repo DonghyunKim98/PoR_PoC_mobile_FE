@@ -1,4 +1,8 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { useFlipper } from '@react-navigation/devtools';
+import {
+  NavigationContainer,
+  useNavigationContainerRef,
+} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { AssetListScreen } from './asset-list';
@@ -16,6 +20,10 @@ type RootNavigatorProps = {};
 const Stack = createStackNavigator<RootStackParamList>();
 
 export const RootNavigator = ({}: RootNavigatorProps) => {
+  const navigationRef = useNavigationContainerRef();
+
+  useFlipper(navigationRef);
+
   return (
     <NavigationContainer>
       <Stack.Navigator
