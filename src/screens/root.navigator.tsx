@@ -9,6 +9,8 @@ import { AssetListScreen } from './asset-list';
 import { AssetPoRConfirmScreen } from './asset-por-confirm';
 import { StartPoRScreen } from './start-por';
 
+import { LoadingPage } from '@/layouts';
+
 export type RootStackParamList = {
   StartPoRScreen: undefined;
   AssetListScreen: { key: string };
@@ -25,7 +27,7 @@ export const RootNavigator = ({}: RootNavigatorProps) => {
   useFlipper(navigationRef);
 
   return (
-    <NavigationContainer>
+    <NavigationContainer fallback={<LoadingPage />}>
       <Stack.Navigator
         initialRouteName="StartPoRScreen"
         screenOptions={{ headerShown: false }}>

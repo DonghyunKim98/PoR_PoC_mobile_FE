@@ -21,8 +21,9 @@ export const queryClient = new ReactQueryClient({
         }
         throw new Error('Invalid QueryKey');
       },
-      suspense: true,
       useErrorBoundary: true,
+      suspense: false, // no suspense, use loading
+      cacheTime: 0, // no-cache
     },
   },
 });
