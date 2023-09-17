@@ -9,35 +9,83 @@ import {
 
 import { palette } from '@/utils';
 
-// TODO : Add fonts + customize the typography
-// fontWeight is not working (no font file yet)
-
 export const getTextStyle = (
   fontWeight: fontWeightType,
   fontSize: fontSizeType,
+  lineHeight: number,
+  letterSpacing: number,
 ): TextStyle => {
   const textStyle = {
     fontSize: parseInt(fontSize),
-    lineHeight: parseInt(fontSize) * 1.5,
-    letterSpacing: -parseInt(fontSize) * 0.04,
+    lineHeight,
+    letterSpacing,
   };
 
   switch (fontWeight) {
-    case '400':
+    case '950': {
       return {
         ...textStyle,
-        fontFamily: 'Pretendard-Light',
+        fontFamily: 'Pretendard-ExtraBlack',
       };
+    }
+    case '900': {
+      return {
+        ...textStyle,
+        fontFamily: 'Pretendard-Black',
+      };
+    }
+    case '800': {
+      return {
+        ...textStyle,
+        fontFamily: 'Pretendard-ExtraBold',
+      };
+    }
+    case '700': {
+      return {
+        ...textStyle,
+        fontFamily: 'Pretendard-Bold',
+      };
+    }
+    case '600': {
+      return {
+        ...textStyle,
+        fontFamily: 'Pretendard-SemiBold',
+      };
+    }
     case '500':
       return {
         ...textStyle,
         fontFamily: 'Pretendard-Medium',
       };
-    case '600':
+    case '400':
       return {
         ...textStyle,
-        fontFamily: 'Pretendard-Bold',
+        fontFamily: 'Pretendard-Normal',
       };
+    case '350': {
+      return {
+        ...textStyle,
+        fontFamily: 'Pretendard-SemiLight',
+      };
+    }
+    case '300': {
+      return {
+        ...textStyle,
+        fontFamily: 'Pretendard-Light',
+      };
+    }
+    case '200': {
+      return {
+        ...textStyle,
+        fontFamily: 'Pretendard-ExtraLight',
+      };
+    }
+    case '100': {
+      return {
+        ...textStyle,
+        fontFamily: 'Pretendard-Thin',
+      };
+    }
     default:
       return {
         ...textStyle,
@@ -47,46 +95,7 @@ export const getTextStyle = (
 };
 
 export const getColorStyle = (color: fontColorType): TextStyle => {
-  switch (color) {
-    case 'gray-600':
-      return { color: palette['gray-600'] };
-
-    case 'gray-500':
-      return { color: palette['gray-500'] };
-
-    case 'gray-400':
-      return { color: palette['gray-400'] };
-
-    case 'gray-1000':
-      return { color: palette['gray-1000'] };
-
-    case 'gray-900':
-      return { color: palette['gray-900'] };
-
-    case 'gray-800':
-      return { color: palette['gray-800'] };
-
-    case 'gray-700':
-      return { color: palette['gray-700'] };
-
-    case 'primary':
-      return { color: palette.primary };
-
-    case 'error':
-      return { color: palette['error'] };
-
-    case 'white':
-      return { color: palette['white'] };
-
-    case 'black':
-      return { color: palette['black'] };
-
-    case 'green':
-      return { color: palette['green'] };
-
-    default:
-      return { color: palette['gray-600'] };
-  }
+  return { color: palette[color] };
 };
 
 export const getTextAlignStyle = (
