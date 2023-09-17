@@ -1,5 +1,5 @@
 import { Box } from '@mobily/stacks';
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
@@ -9,7 +9,8 @@ import { RootStackParamList } from '../root.navigator';
 import { AssetListAssetItem } from './components';
 
 import { Header } from '@/atoms';
-import { BasicLayout } from '@/layouts';
+import { useGetReadAssetsQuery } from '@/hooks';
+import { BasicLayout, LoadingPage } from '@/layouts';
 
 type AssetListScreenProps = {};
 
@@ -23,25 +24,17 @@ export type AssetListScreenNavigationRouteProps = RouteProp<
   'AssetListScreen'
 >;
 
-const tempData = [
-  {
-    name: 'STO1',
-    logoUrl:
-      'https://res.cloudinary.com/nuri/image/upload/v1694680280/por/fqnl7edbqiqzrwhlpfrj.png',
-    unit: 'Token',
-    myAsset: '3',
-  },
-  {
-    name: 'STO2',
-    logoUrl:
-      'https://res.cloudinary.com/nuri/image/upload/v1694680280/por/fqnl7edbqiqzrwhlpfrj.png',
-    unit: 'Token',
-    myAsset: '3',
-  },
-];
-
 export const AssetListScreen = ({}: AssetListScreenProps) => {
+  const {
+    params: { key },
+  } = useRoute<AssetListScreenNavigationRouteProps>();
+
+  const { isLoading, data } = useGetReadAssetsQuery({ key });
   const { t } = useTranslation();
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <>
@@ -52,7 +45,7 @@ export const AssetListScreen = ({}: AssetListScreenProps) => {
       />
       <BasicLayout>
         <FlatList
-          data={tempData}
+          data={data?.data}
           renderItem={({ item }) => {
             return <AssetListAssetItem {...item} />;
           }}

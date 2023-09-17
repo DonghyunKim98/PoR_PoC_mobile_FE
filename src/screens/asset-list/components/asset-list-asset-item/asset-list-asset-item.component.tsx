@@ -4,14 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { Pressable, Image } from 'react-native';
 
 import { Text } from '@/atoms';
+import { getReadAssetsResponseData } from '@/hooks';
 import { palette } from '@/utils';
 
-type AssetListAssetItemProps = {
-  name: string;
-  logoUrl: string;
-  unit: string;
-  myAsset: string;
-};
+type AssetListAssetItemProps = getReadAssetsResponseData['data'][0];
 
 export const AssetListAssetItem = memo<AssetListAssetItemProps>(
   ({ name, logoUrl, unit, myAsset }) => {

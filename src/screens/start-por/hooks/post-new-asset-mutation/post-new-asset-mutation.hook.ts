@@ -4,7 +4,7 @@ import { defaultAxios } from '@/utils';
 
 type postNewAssetReturnData = {
   success: boolean;
-  key: number;
+  key: string;
 };
 
 export const usePostNewAssetMutation = () => {

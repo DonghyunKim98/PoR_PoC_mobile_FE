@@ -6,7 +6,7 @@ import { StartPoRScreen } from './start-por';
 
 export type RootStackParamList = {
   StartPoRScreen: undefined;
-  AssetListScreen: { key: number };
+  AssetListScreen: { key: string };
 };
 
 type RootNavigatorProps = {};
