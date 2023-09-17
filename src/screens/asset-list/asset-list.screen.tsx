@@ -42,6 +42,7 @@ export const AssetListScreen = ({}: AssetListScreenProps) => {
         title={t('assetListScreen_header_title')}
         titleColor="primary"
         leftIconColor="primary"
+        backgroundColor="white"
       />
       <BasicLayout>
         <FlatList

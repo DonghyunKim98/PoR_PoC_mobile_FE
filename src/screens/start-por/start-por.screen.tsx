@@ -46,6 +46,7 @@ export const StartPoRScreen = ({}: StartPoRScreenProps) => {
         title={t('StartPoRScreen_header_title')}
         titleColor="primary"
         leftIconColor="black"
+        backgroundColor="white"
       />
       <ScrollView contentContainerStyle={{ flex: 1 }}>
         <BasicLayout>

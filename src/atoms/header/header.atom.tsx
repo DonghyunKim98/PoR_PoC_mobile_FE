@@ -13,10 +13,11 @@ type HeaderProps = {
   title: string;
   titleColor: keyof typeof palette;
   leftIconColor: keyof typeof palette;
+  backgroundColor: keyof typeof palette;
 };
 
 export const Header = memo<HeaderProps>(
-  ({ title, leftIconColor, titleColor }: HeaderProps) => {
+  ({ title, leftIconColor, titleColor, backgroundColor }: HeaderProps) => {
     const navigation = useNavigation();
 
     useBackHandler(() => {
@@ -43,7 +44,7 @@ export const Header = memo<HeaderProps>(
 
     return (
       <Box
-        style={{ height: 40, backgroundColor: palette['white'] }}
+        style={{ height: 40, backgroundColor: backgroundColor }}
         direction="row"
         alignY="center"
         alignX="between"
