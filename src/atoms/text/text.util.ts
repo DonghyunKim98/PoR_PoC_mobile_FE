@@ -13,11 +13,11 @@ export const getTextStyle = (
   fontWeight: fontWeightType,
   fontSize: fontSizeType,
   lineHeight: number,
-  letterSpacing: number,
+  letterSpacing?: number,
 ): TextStyle => {
   const textStyle = {
     fontSize: parseInt(fontSize),
-    lineHeight,
+    lineHeight: lineHeight + 2,
     letterSpacing,
   };
 

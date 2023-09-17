@@ -25,7 +25,7 @@ type TextProps = RNTextProps & {
   fontSize: fontSizeType;
   color: fontColorType;
   lineHeight: number;
-  letterSpacing: number;
+  letterSpacing?: number;
   textAlignment?: textAligns;
 };
 

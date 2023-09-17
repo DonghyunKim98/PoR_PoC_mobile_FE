@@ -1,10 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { LoginScreen } from './login';
+import { StartPoRScreen } from './start-por';
 
 export type RootStackParamList = {
-  LoginScreen: undefined;
+  StartPoRScreen: undefined;
 };
 
 type RootNavigatorProps = {};
@@ -15,9 +15,9 @@ export const RootNavigator = ({}: RootNavigatorProps) => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="LoginScreen"
+        initialRouteName="StartPoRScreen"
         screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="StartPoRScreen" component={StartPoRScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
