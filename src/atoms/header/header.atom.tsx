@@ -44,7 +44,7 @@ export const Header = memo<HeaderProps>(
 
     return (
       <Box
-        style={{ height: 40, backgroundColor: backgroundColor }}
+        style={{ height: 40, backgroundColor: palette[backgroundColor] }}
         direction="row"
         alignY="center"
         alignX="between"

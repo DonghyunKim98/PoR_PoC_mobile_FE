@@ -10,6 +10,7 @@ export type getReadAssetsResponseData = {
     logoUrl: string;
     unit: string;
     myAsset: string;
+    assetId: string;
   }[];
 };
 

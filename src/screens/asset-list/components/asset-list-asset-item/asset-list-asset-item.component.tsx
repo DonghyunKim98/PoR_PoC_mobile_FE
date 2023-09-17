@@ -1,7 +1,13 @@
 import { Box, Columns, Column, Stack } from '@mobily/stacks';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Image } from 'react-native';
+
+import {
+  AssetListScreenNavigationProps,
+  AssetListScreenNavigationRouteProps,
+} from '../../asset-list.screen';
 
 import { Text } from '@/atoms';
 import { getReadAssetsResponseData } from '@/hooks';
@@ -10,11 +16,23 @@ import { palette } from '@/utils';
 type AssetListAssetItemProps = getReadAssetsResponseData['data'][0];
 
 export const AssetListAssetItem = memo<AssetListAssetItemProps>(
-  ({ name, logoUrl, unit, myAsset }) => {
+  ({ name, logoUrl, unit, myAsset, assetId }) => {
+    const navigation = useNavigation<AssetListScreenNavigationProps>();
+    const {
+      params: { key },
+    } = useRoute<AssetListScreenNavigationRouteProps>();
+
     const { t } = useTranslation();
 
+    const handlePressAssetItem = () => {
+      navigation.navigate('AssetPorConfirmScreen', {
+        key,
+        assetId,
+      });
+    };
+
     return (
-      <Pressable>
+      <Pressable onPress={handlePressAssetItem}>
         {({ pressed }) => {
           return (
             <Box
