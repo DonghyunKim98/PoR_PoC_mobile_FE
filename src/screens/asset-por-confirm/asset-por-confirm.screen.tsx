@@ -6,6 +6,7 @@ import { useWindowDimensions } from 'react-native';
 import { RootStackParamList } from '../root.navigator';
 
 import {
+  AssetPoRConfirmMyCommitment,
   AssetPoRConfirmMyInfoComponent,
   AssetPoRConfirmTotalInfoComponent,
 } from './components';
@@ -78,6 +79,9 @@ export const AssetPoRConfirmScreen = ({}: AssetPoRConfirmScreenProps) => {
             }}
           />
           <AssetPoRConfirmMyInfoComponent {...data} />
+        </Stack>
+        <Stack paddingY={30} paddingX={24}>
+          <AssetPoRConfirmMyCommitment {...data} />
         </Stack>
       </ScrollView>
     </>

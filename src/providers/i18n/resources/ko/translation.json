@@ -8,5 +8,6 @@
   "assetProConfirmScreen_myInfo_isIncluded_true": "내 자산이 전체 자산 안에 포함되어 있습니다.",
   "assetProConfirmScreen_myInfo_isCoincided_true": "공표된 자산이 실제 총자산과 일치 합니다.",
   "assetProConfirmScreen_myInfo_isCoincided_false": "'공표된 자산이 실제 총자산과 불일치합니다.'",
-  "assetProConfirmScreen_myInfo_myAsset": "내 자산 현황"
+  "assetProConfirmScreen_myInfo_myAsset": "내 자산 현황",
+  "assetPorConfirmScreen_myCommitment": "내 자산 데이터"
 }
