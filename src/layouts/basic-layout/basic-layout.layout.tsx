@@ -3,15 +3,20 @@ import { PropsWithChildren } from 'react';
 
 import { palette } from '@/utils';
 
-type BasicLayoutProps = PropsWithChildren<{}>;
+type BasicLayoutProps = PropsWithChildren<{
+  backgroundColor?: keyof typeof palette;
+}>;
 
-export const BasicLayout = ({ children }: BasicLayoutProps) => {
+export const BasicLayout = ({
+  children,
+  backgroundColor = 'white',
+}: BasicLayoutProps) => {
   return (
     <Box
       flex="fluid"
       style={{
         width: '100%',
-        backgroundColor: palette['white'],
+        backgroundColor: palette[backgroundColor],
       }}
       paddingX={24}
       paddingTop={10}

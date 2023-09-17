@@ -25,7 +25,7 @@ export const AssetListAssetItem = memo<AssetListAssetItemProps>(
     const { t } = useTranslation();
 
     const handlePressAssetItem = () => {
-      navigation.navigate('AssetPorConfirmScreen', {
+      navigation.navigate('AssetPoRConfirmScreen', {
         key,
         assetId,
       });

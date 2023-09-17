@@ -12,7 +12,7 @@ import { StartPoRScreen } from './start-por';
 export type RootStackParamList = {
   StartPoRScreen: undefined;
   AssetListScreen: { key: string };
-  AssetPorConfirmScreen: { key: string; assetId: string };
+  AssetPoRConfirmScreen: { key: string; assetId: string };
 };
 
 type RootNavigatorProps = {};
@@ -32,7 +32,7 @@ export const RootNavigator = ({}: RootNavigatorProps) => {
         <Stack.Screen name="StartPoRScreen" component={StartPoRScreen} />
         <Stack.Screen name="AssetListScreen" component={AssetListScreen} />
         <Stack.Screen
-          name="AssetPorConfirmScreen"
+          name="AssetPoRConfirmScreen"
           component={AssetPoRConfirmScreen}
         />
       </Stack.Navigator>

@@ -17,7 +17,7 @@ export const getTextStyle = (
 ): TextStyle => {
   const textStyle = {
     fontSize: parseInt(fontSize),
-    lineHeight: lineHeight + 2,
+    lineHeight: lineHeight === parseInt(fontSize) ? lineHeight + 2 : lineHeight,
     letterSpacing,
   };
 
