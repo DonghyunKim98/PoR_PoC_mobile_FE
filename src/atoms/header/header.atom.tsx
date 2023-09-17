@@ -29,19 +29,22 @@ export const Header = memo<HeaderProps>(
       };
 
       if (!navigation.canGoBack()) {
-        return <Box flex="content" />;
+        return <Box flex="content" style={{ width: 24 }} />;
       }
 
       return (
-        <TouchableOpacity onPress={handlePressLeftButton}>
-          <Icon name="home" size={24} color={palette[leftIconColor]} />
-        </TouchableOpacity>
+        <Box flex="content">
+          <TouchableOpacity onPress={handlePressLeftButton}>
+            <Icon name="arrow-left" size={24} color={palette[leftIconColor]} />
+          </TouchableOpacity>
+        </Box>
       );
     };
 
     return (
       <Box
         style={{ height: 40, backgroundColor: palette['white'] }}
+        direction="row"
         alignY="center"
         alignX="between"
         paddingX={24}>
@@ -56,7 +59,7 @@ export const Header = memo<HeaderProps>(
             {title}
           </Text>
         </Box>
-        <Box flex="content" />
+        <Box flex="content" style={{ width: 24 }} />
       </Box>
     );
   },
