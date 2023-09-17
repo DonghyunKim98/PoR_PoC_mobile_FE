@@ -12,7 +12,10 @@ export const BasicLayout = ({ children }: BasicLayoutProps) => {
       style={{
         width: '100%',
         backgroundColor: palette['white'],
-      }}>
+      }}
+      paddingX={24}
+      paddingTop={10}
+      paddingBottom={32}>
       {children}
     </Box>
   );
