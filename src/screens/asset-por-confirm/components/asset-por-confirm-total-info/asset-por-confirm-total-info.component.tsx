@@ -3,19 +3,19 @@ import { Image } from 'react-native';
 
 import { Text } from '@/atoms';
 
-type AssetPorConfirmTitleComponentProps = {
+type AssetPorConfirmTotalInfoComponentProps = {
   logoUrl: string;
   name: string;
-  myAsset: string;
+  totalAsset: string;
   unit: string;
 };
 
-export const AssetPorConfirmTitleComponent = ({
+export const AssetPoRConfirmTotalInfoComponent = ({
   logoUrl,
   name,
-  myAsset,
+  totalAsset,
   unit,
-}: AssetPorConfirmTitleComponentProps) => {
+}: AssetPorConfirmTotalInfoComponentProps) => {
   return (
     <Stack space={10} align="center">
       <Image source={{ uri: logoUrl }} width={40} height={40} />
@@ -27,13 +27,13 @@ export const AssetPorConfirmTitleComponent = ({
           color="gray-500">
           {name}
         </Text>
-        <Stack space={5} horizontal align="center">
+        <Stack space={5} horizontal align="bottom">
           <Text
             fontWeight="400"
             fontSize="18"
             lineHeight={21.48}
             color="gray-700">
-            {myAsset}
+            {totalAsset}
           </Text>
           <Text
             fontWeight="400"

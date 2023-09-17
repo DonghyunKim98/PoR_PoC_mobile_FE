@@ -1,1 +1,2 @@
-export * from './asset-por-confirm-title';
+export * from './asset-por-confirm-my-info';
+export * from './asset-por-confirm-total-info';

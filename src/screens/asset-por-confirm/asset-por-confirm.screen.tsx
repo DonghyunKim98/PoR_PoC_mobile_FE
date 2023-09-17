@@ -1,14 +1,18 @@
 import { Box, Stack } from '@mobily/stacks';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useWindowDimensions } from 'react-native';
 
 import { RootStackParamList } from '../root.navigator';
 
-import { AssetPorConfirmTitleComponent } from './components';
+import {
+  AssetPoRConfirmMyInfoComponent,
+  AssetPoRConfirmTotalInfoComponent,
+} from './components';
 
 import { Header } from '@/atoms';
 import { useGetPoRForUserQuery } from '@/hooks';
-import { BasicLayout, LoadingPage, ScrollView } from '@/layouts';
+import { LoadingPage, ScrollView } from '@/layouts';
 import { palette } from '@/utils';
 
 type AssetPoRConfirmScreenProps = {};
@@ -24,11 +28,12 @@ export type AssetPoRConfirmScreenNavigationRouteProps = RouteProp<
 >;
 
 export const AssetPoRConfirmScreen = ({}: AssetPoRConfirmScreenProps) => {
+  const { width: windowWidth } = useWindowDimensions();
   const {
     params: { key, assetId },
   } = useRoute<AssetPoRConfirmScreenNavigationRouteProps>();
 
-  const { isLoading, data, error } = useGetPoRForUserQuery({ key, assetId });
+  const { isLoading, data } = useGetPoRForUserQuery({ key, assetId });
 
   if (isLoading || !data) {
     // TODO : 전용 Loading Page 제작
@@ -56,17 +61,24 @@ export const AssetPoRConfirmScreen = ({}: AssetPoRConfirmScreenProps) => {
         backgroundColor="primary"
       />
       <ScrollView contentContainerStyle={{ flex: 1 }}>
-        <BasicLayout backgroundColor="primary">
-          <Stack space={20} align="center">
-            <AssetPorConfirmTitleComponent
-              logoUrl={logoUrl}
-              name={name}
-              myAsset={myAsset}
-              unit={unit}
-            />
-            <Box style={{ height: 10, backgroundColor: palette['gray-700'] }} />
-          </Stack>
-        </BasicLayout>
+        <Stack
+          space={20}
+          align="center"
+          paddingTop={10}
+          paddingBottom={20}
+          paddingX={24}
+          style={{ backgroundColor: palette['primary'] }}>
+          <AssetPoRConfirmTotalInfoComponent {...data} />
+          <Box
+            direction="row"
+            style={{
+              width: windowWidth - 48,
+              height: 1,
+              backgroundColor: palette['gray-700'],
+            }}
+          />
+          <AssetPoRConfirmMyInfoComponent {...data} />
+        </Stack>
       </ScrollView>
     </>
   );

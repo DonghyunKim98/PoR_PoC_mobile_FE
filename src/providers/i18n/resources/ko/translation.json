@@ -4,5 +4,9 @@
   "StartPoRScreen_content_title": "준비금 증명을 위해\n내 자산을 생성하세요.",
   "StartPoRScreen_content_warning": "한 번 생성한 내 자산 데이터는 재 접속 시 저장되어 있지 않습니다",
   "assetListScreen_header_title": "내 자산 목록",
-  "assetListScreen_assetItem_button": "더보기"
+  "assetListScreen_assetItem_button": "더보기",
+  "assetProConfirmScreen_myInfo_isIncluded_true": "내 자산이 전체 자산 안에 포함되어 있습니다.",
+  "assetProConfirmScreen_myInfo_isCoincided_true": "공표된 자산이 실제 총자산과 일치 합니다.",
+  "assetProConfirmScreen_myInfo_isCoincided_false": "'공표된 자산이 실제 총자산과 불일치합니다.'",
+  "assetProConfirmScreen_myInfo_myAsset": "내 자산 현황"
 }
