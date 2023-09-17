@@ -6,9 +6,12 @@ import { Image, TouchableOpacity } from 'react-native';
 
 import { RootStackParamList } from '../root.navigator';
 
+import { usePostNewAssetMutation } from './hooks';
+
 import { START_SCREEN_BANNER_IMG } from '@/assets';
 import { Header, Icon, Text } from '@/atoms';
 import { BasicLayout, ScrollView } from '@/layouts';
+import { useMutationIndicator } from '@/providers';
 import { palette } from '@/utils';
 
 type StartPoRScreenProps = {};
@@ -24,12 +27,17 @@ export type StartPoRScreenNavigationRouteProps = RouteProp<
 >;
 
 export const StartPoRScreen = ({}: StartPoRScreenProps) => {
+  const { mutateAsync, isLoading: isPostingNewAsset } =
+    usePostNewAssetMutation();
   const navigation = useNavigation<StartPoRScreenNavigationProps>();
+
+  useMutationIndicator([isPostingNewAsset]);
 
   const { t } = useTranslation();
 
-  const handlePressCTAButton = () => {
-    navigation.navigate('AssetListScreen');
+  const handlePressCTAButton = async () => {
+    const { key } = await mutateAsync();
+    navigation.navigate('AssetListScreen', { key });
   };
 
   return (

@@ -61,7 +61,7 @@ export const AssetListAssetItem = memo<AssetListAssetItemProps>(
                         </Text>
                         <Text
                           fontWeight="400"
-                          fontSize="12"
+                          fontSize="14"
                           lineHeight={20}
                           color="gray-300">
                           {unit}
