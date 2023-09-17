@@ -15,7 +15,7 @@ export const AssetPoRConfirmMyCommitment =
     const { t } = useTranslation();
 
     return (
-      <Stack space={8}>
+      <Stack space={8} paddingX={24}>
         <Text fontWeight="700" fontSize="16" lineHeight={16} color="primary">
           {t('assetPorConfirmScreen_myCommitment')}
         </Text>

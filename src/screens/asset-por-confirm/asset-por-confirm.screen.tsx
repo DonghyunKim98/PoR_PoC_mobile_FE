@@ -86,30 +86,34 @@ export const AssetPoRConfirmScreen = ({}: AssetPoRConfirmScreenProps) => {
           />
           <AssetPoRConfirmMyInfoComponent {...data} />
         </Stack>
-        <Stack paddingY={30} paddingX={24}>
+        <Stack paddingY={30} space={30}>
           <AssetPoRConfirmMyCommitment {...data} />
-          <Box>
-            <Text
-              fontWeight="700"
-              fontSize="16"
-              lineHeight={16}
-              color="primary">
-              {t('assetPorConfirmScreen_allCommitments')}
-            </Text>
-            {selectedCommitments.map(commitment => {
-              const isMyAsset =
-                commitment[0] === myCommitment[0] &&
-                commitment[1] === myCommitment[1];
+          <Stack space={10}>
+            <Box paddingX={24}>
+              <Text
+                fontWeight="700"
+                fontSize="16"
+                lineHeight={16}
+                color="primary">
+                {t('assetPorConfirmScreen_allCommitments')}
+              </Text>
+            </Box>
+            <Box>
+              {selectedCommitments.map((commitment, index) => {
+                const isMyAsset =
+                  commitment[0] === myCommitment[0] &&
+                  commitment[1] === myCommitment[1];
 
-              return (
-                <AssetPorConfirmAllCommitmentItem
-                  key={commitment[0]}
-                  isMyAsset={isMyAsset}
-                  commitment={commitment}
-                />
-              );
-            })}
-          </Box>
+                return (
+                  <AssetPorConfirmAllCommitmentItem
+                    key={index}
+                    isMyAsset={isMyAsset}
+                    commitment={commitment}
+                  />
+                );
+              })}
+            </Box>
+          </Stack>
         </Stack>
       </ScrollView>
     </>
