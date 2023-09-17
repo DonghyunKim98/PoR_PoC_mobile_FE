@@ -19,7 +19,7 @@ export const AssetPorConfirmTitleComponent = ({
   return (
     <Stack space={10} align="center">
       <Image source={{ uri: logoUrl }} width={40} height={40} />
-      <Stack space={4}>
+      <Stack space={4} align="center">
         <Text
           fontWeight="700"
           fontSize="20"
@@ -27,7 +27,7 @@ export const AssetPorConfirmTitleComponent = ({
           color="gray-500">
           {name}
         </Text>
-        <Stack space={5} horizontal>
+        <Stack space={5} horizontal align="center">
           <Text
             fontWeight="400"
             fontSize="18"

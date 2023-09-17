@@ -48,7 +48,9 @@ export const AssetListScreen = ({}: AssetListScreenProps) => {
         <FlatList
           data={data?.data}
           renderItem={({ item, index }) => {
-            return <AssetListAssetItem {...item} assetId={index.toString()} />;
+            return (
+              <AssetListAssetItem {...item} assetId={(index + 1).toString()} />
+            );
           }}
           ItemSeparatorComponent={() => <Box style={{ height: 10 }} />}
         />

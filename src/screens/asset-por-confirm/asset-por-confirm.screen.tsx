@@ -64,7 +64,7 @@ export const AssetPoRConfirmScreen = ({}: AssetPoRConfirmScreenProps) => {
               myAsset={myAsset}
               unit={unit}
             />
-            <Box style={{ height: 1, backgroundColor: palette['gray-700'] }} />
+            <Box style={{ height: 10, backgroundColor: palette['gray-700'] }} />
           </Stack>
         </BasicLayout>
       </ScrollView>
