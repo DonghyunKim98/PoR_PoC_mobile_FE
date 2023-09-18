@@ -25,6 +25,10 @@ export const AssetPoRConfirmMyInfoComponent = memo(
     const [isVisibleReportModal, setIsVisibleReportModal] =
       useState<boolean>(false);
 
+    const handlePressReportButton = () => {
+      setIsVisibleReportModal(true);
+    };
+
     const onPressConfirmButtonInReportModal = () => {
       setIsVisibleReportModal(false);
     };
@@ -66,7 +70,7 @@ export const AssetPoRConfirmMyInfoComponent = memo(
                 </Text>
               </Stack>
               {!isCoincided && (
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handlePressReportButton}>
                   <Box
                     paddingX={9}
                     paddingY={5}

@@ -42,16 +42,21 @@ export const AssetPorConfirmReportModal = memo<AssetPorConfirmReportModalProps>(
         backdropColor={palette['gray-900']}
         deviceHeight={maxDeviceHeight}
         deviceWidth={width}
-        backdropOpacity={0.7}>
+        backdropOpacity={0.7}
+        style={{ margin: 0 }}>
         <Box
           alignX="center"
           alignY="center"
           alignSelf="center"
           flex="fluid"
-          paddingX={50}>
-          <Stack paddingY={24} style={{ backgroundColor: palette['white'] }}>
+          paddingX={50}
+          style={{ width: '100%' }}>
+          <Stack
+            paddingY={24}
+            style={{ backgroundColor: palette['white'] }}
+            align="center">
             <Stack space={28}>
-              <Stack space={16}>
+              <Stack space={16} align="center">
                 <ReportSuccessSVG width={48} height={48} />
                 <Text
                   fontWeight="400"
@@ -63,15 +68,15 @@ export const AssetPorConfirmReportModal = memo<AssetPorConfirmReportModalProps>(
                   })}
                 </Text>
               </Stack>
-              <Stack space={16}>
-                <Box
-                  style={{
-                    width: '100%',
-                    height: 1,
-                    backgroundColor: palette['primary'],
-                  }}
-                />
-                <TouchableOpacity onPress={handlePressConfirmButton}>
+              <TouchableOpacity onPress={handlePressConfirmButton}>
+                <Stack space={16} align="center">
+                  <Box
+                    style={{
+                      width: '100%',
+                      height: 1,
+                      backgroundColor: palette['primary'],
+                    }}
+                  />
                   <Text
                     fontWeight="500"
                     fontSize="16"
@@ -79,8 +84,8 @@ export const AssetPorConfirmReportModal = memo<AssetPorConfirmReportModalProps>(
                     color="primary">
                     {t('AssetPorConfirmScreen_reportModal_confirmButton')}
                   </Text>
-                </TouchableOpacity>
-              </Stack>
+                </Stack>
+              </TouchableOpacity>
             </Stack>
           </Stack>
         </Box>
