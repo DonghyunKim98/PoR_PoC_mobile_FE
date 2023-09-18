@@ -35,6 +35,7 @@ export type AssetPoRConfirmScreenNavigationRouteProps = RouteProp<
 export const AssetPoRConfirmScreen = ({}: AssetPoRConfirmScreenProps) => {
   const { t } = useTranslation();
   const { width: windowWidth } = useWindowDimensions();
+
   const {
     params: { key, assetId },
   } = useRoute<AssetPoRConfirmScreenNavigationRouteProps>();

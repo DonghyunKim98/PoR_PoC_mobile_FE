@@ -35,8 +35,8 @@ export const MutationIndicator = ({ isMutating }: MutationIndicatorProps) => {
       <Box alignX="center" alignY="center" alignSelf="center" flex="fluid">
         <ActivityIndicator
           animating={true}
-          color={palette['primary']}
-          size="small"
+          color={palette['white']}
+          size="large"
         />
       </Box>
     </Modal>
