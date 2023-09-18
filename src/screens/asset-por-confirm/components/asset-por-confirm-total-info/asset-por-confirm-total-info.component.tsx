@@ -39,7 +39,8 @@ export const AssetPoRConfirmTotalInfoComponent = ({
             fontWeight="400"
             fontSize="12"
             lineHeight={14.32}
-            color="gray-700">
+            color="gray-700"
+            style={{ marginBottom: 1.5 }}>
             {unit}
           </Text>
         </Stack>

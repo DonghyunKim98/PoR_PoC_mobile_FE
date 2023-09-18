@@ -94,7 +94,7 @@ export const StartPoRScreen = ({}: StartPoRScreenProps) => {
                   <Box
                     style={{
                       backgroundColor: palette['primary'],
-                      borderRadius: 6,
+                      borderRadius: 5,
                     }}
                     paddingX={18}
                     paddingY={14}

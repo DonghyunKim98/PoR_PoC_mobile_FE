@@ -97,7 +97,7 @@ export const AssetPoRConfirmMyInfoComponent = memo(
             alignX="between"
             style={{
               backgroundColor: palette['gray-800'],
-              borderRadius: 4,
+              borderRadius: 5,
               height: 60,
             }}>
             <Text
@@ -115,15 +115,16 @@ export const AssetPoRConfirmMyInfoComponent = memo(
               <Text
                 fontWeight="400"
                 fontSize="20"
-                lineHeight={23.87}
+                lineHeight={20}
                 color="white">
                 {myAsset}
               </Text>
               <Text
                 fontWeight="400"
                 fontSize="12"
-                lineHeight={14.32}
-                color="white">
+                lineHeight={12}
+                color="white"
+                style={{ marginBottom: 2 }}>
                 {unit}
               </Text>
             </Stack>

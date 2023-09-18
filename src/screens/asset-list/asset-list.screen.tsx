@@ -55,10 +55,8 @@ export const AssetListScreen = ({}: AssetListScreenProps) => {
           paddingVertical: 10,
         }}
         contentContainerStyle={{ flexGrow: 1 }}
-        renderItem={({ item, index }) => {
-          return (
-            <AssetListAssetItem {...item} assetId={(index + 1).toString()} />
-          );
+        renderItem={({ item }) => {
+          return <AssetListAssetItem {...item} />;
         }}
         ItemSeparatorComponent={() => <Box style={{ height: 10 }} />}
       />

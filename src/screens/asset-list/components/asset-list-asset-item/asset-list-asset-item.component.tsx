@@ -65,7 +65,7 @@ export const AssetListAssetItem = memo<AssetListAssetItemProps>(
                         color="primary">
                         {name}
                       </Text>
-                      <Stack space={6} horizontal>
+                      <Stack space={6} horizontal align="bottom">
                         <Text
                           fontWeight="500"
                           fontSize="20"
