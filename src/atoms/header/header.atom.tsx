@@ -43,25 +43,30 @@ export const Header = memo<HeaderProps>(
     };
 
     return (
-      <Box
-        style={{ height: 40, backgroundColor: palette[backgroundColor] }}
-        direction="row"
-        alignY="center"
-        alignX="between"
-        paddingX={24}>
-        {renderLeft()}
-        <Box flex="fluid" alignY="center" alignX="center">
-          <Text
-            fontWeight="700"
-            fontSize="20"
-            lineHeight={20}
-            color={titleColor}
-            textAlignment="center">
-            {title}
-          </Text>
+      <>
+        <Box
+          style={{ height: 20, backgroundColor: palette[backgroundColor] }}
+        />
+        <Box
+          style={{ height: 60, backgroundColor: palette[backgroundColor] }}
+          direction="row"
+          alignY="center"
+          alignX="between"
+          paddingX={24}>
+          {renderLeft()}
+          <Box flex="fluid" alignY="center" alignX="center">
+            <Text
+              fontWeight="700"
+              fontSize="20"
+              lineHeight={20}
+              color={titleColor}
+              textAlignment="center">
+              {title}
+            </Text>
+          </Box>
+          <Box flex="content" style={{ width: 24 }} />
         </Box>
-        <Box flex="content" style={{ width: 24 }} />
-      </Box>
+      </>
     );
   },
 );

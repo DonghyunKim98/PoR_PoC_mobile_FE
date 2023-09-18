@@ -7,9 +7,10 @@ import { Image, TouchableOpacity } from 'react-native';
 import { RootStackParamList } from '../root.navigator';
 
 import { usePostNewAssetMutation } from './hooks';
+import WarningCircleSVG from './warning-circle 2.svg';
 
 import { START_SCREEN_BANNER_IMG } from '@/assets';
-import { Header, Icon, Text } from '@/atoms';
+import { Header, Text } from '@/atoms';
 import { BasicLayout, ScrollView } from '@/layouts';
 import { useMutationIndicator } from '@/providers';
 import { palette } from '@/utils';
@@ -71,15 +72,7 @@ export const StartPoRScreen = ({}: StartPoRScreenProps) => {
               <Stack space={20}>
                 <Stack space={20} align="center">
                   <Stack horizontal space={4} align="center">
-                    <Icon
-                      name="exclamation"
-                      size={16}
-                      color={palette['white']}
-                      style={{
-                        backgroundColor: palette['primary'],
-                        borderRadius: 16,
-                      }}
-                    />
+                    <WarningCircleSVG width={16} height={16} />
                     <Text
                       fontWeight="500"
                       fontSize="12"
