@@ -12,5 +12,7 @@
   "assetPorConfirmScreen_myCommitment": "내 자산 데이터",
   "assetPorConfirmScreen_allCommitments": "전체 자산 데이터",
   "AssetPorConfirmScreen_allCommitment_myCommitment": "내 자산",
-  "assetProConfirmScreen_myInfo_report": "제보하기"
+  "assetProConfirmScreen_myInfo_report": "제보하기",
+  "AssetPorConfirmScreen_reportModal_confirmButton": "확인",
+  "AssetPorConfirmScreen_reportModal_title": "{{companyName}}에 제보되었습니다"
 }

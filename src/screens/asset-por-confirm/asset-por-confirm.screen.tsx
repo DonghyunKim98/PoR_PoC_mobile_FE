@@ -45,17 +45,7 @@ export const AssetPoRConfirmScreen = ({}: AssetPoRConfirmScreenProps) => {
     return <LoadingPage />;
   }
 
-  const {
-    name,
-    logoUrl,
-    unit,
-    isIncluded,
-    isCoincided,
-    totalAsset,
-    myCommitment,
-    myAsset,
-    commitments,
-  } = data;
+  const { myCommitment, commitments } = data;
 
   const selectedCommitments = getRandomCommitments(commitments, myCommitment);
 
