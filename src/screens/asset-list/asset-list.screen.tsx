@@ -52,12 +52,12 @@ export const AssetListScreen = ({}: AssetListScreenProps) => {
           width: '100%',
           backgroundColor: palette['white'],
           paddingHorizontal: 24,
-          paddingVertical: 10,
+          paddingTop: 10,
         }}
-        contentContainerStyle={{ flexGrow: 1 }}
         renderItem={({ item }) => {
           return <AssetListAssetItem {...item} />;
         }}
+        ListFooterComponent={<Box style={{ height: 40 }} />}
         ItemSeparatorComponent={() => <Box style={{ height: 10 }} />}
       />
     </>

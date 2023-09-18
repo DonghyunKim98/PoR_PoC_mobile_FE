@@ -2,6 +2,7 @@ import { Box } from '@mobily/stacks';
 import RNToast from 'react-native-toast-message';
 
 import { Text } from '@/atoms';
+import { palette } from '@/utils';
 
 export const Toast = () => {
   const toastConfig = {
@@ -12,7 +13,7 @@ export const Toast = () => {
             padding={16}
             style={{
               width: '100%',
-              backgroundColor: 'rgba(255, 255, 255, 0.20)',
+              backgroundColor: palette['gray-800'],
               borderRadius: 5,
             }}>
             <Text fontWeight="500" fontSize="14" lineHeight={20} color="white">

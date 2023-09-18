@@ -1,8 +1,10 @@
 import { Box, Stack } from '@mobily/stacks';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useWindowDimensions } from 'react-native';
+import { useCountdown } from 'rooks';
 
 import { RootStackParamList } from '../root.navigator';
 
@@ -36,13 +38,18 @@ export const AssetPoRConfirmScreen = ({}: AssetPoRConfirmScreenProps) => {
   const { t } = useTranslation();
   const { width: windowWidth } = useWindowDimensions();
 
+  const endTimeRef = useRef(new Date(Date.now() + 6000));
+  const count = useCountdown(endTimeRef.current, {
+    interval: 1000,
+  });
+
   const {
     params: { key, assetId },
   } = useRoute<AssetPoRConfirmScreenNavigationRouteProps>();
 
   const { isLoading, data } = useGetPoRForUserQuery({ key, assetId });
 
-  if (isLoading || !data) {
+  if (isLoading || !data || count !== 0) {
     // TODO : 전용 Loading Page 제작
     return <AssetPoRConfirmLoading />;
   }
