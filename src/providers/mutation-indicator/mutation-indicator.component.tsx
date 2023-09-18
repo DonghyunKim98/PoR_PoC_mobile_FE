@@ -25,8 +25,8 @@ export const MutationIndicator = ({ isMutating }: MutationIndicatorProps) => {
       isVisible={isMutating}
       animationIn="fadeIn"
       animationOut="fadeOut"
-      backdropColor={palette['white-a60']}
-      backdropOpacity={1}
+      backdropColor={palette['gray-900']}
+      backdropOpacity={0.7}
       useNativeDriver
       statusBarTranslucent
       deviceHeight={maxDeviceHeight}

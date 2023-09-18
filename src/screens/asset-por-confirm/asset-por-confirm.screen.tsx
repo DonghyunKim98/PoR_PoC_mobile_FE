@@ -8,6 +8,7 @@ import { RootStackParamList } from '../root.navigator';
 
 import { getRandomCommitments } from './asset-por-confirm.util';
 import {
+  AssetPoRConfirmLoading,
   AssetPoRConfirmMyCommitment,
   AssetPoRConfirmMyInfoComponent,
   AssetPoRConfirmTotalInfoComponent,
@@ -16,7 +17,7 @@ import {
 
 import { Header, Text } from '@/atoms';
 import { useGetPoRForUserQuery } from '@/hooks';
-import { LoadingPage, ScrollView } from '@/layouts';
+import { ScrollView } from '@/layouts';
 import { palette } from '@/utils';
 
 type AssetPoRConfirmScreenProps = {};
@@ -42,7 +43,7 @@ export const AssetPoRConfirmScreen = ({}: AssetPoRConfirmScreenProps) => {
 
   if (isLoading || !data) {
     // TODO : 전용 Loading Page 제작
-    return <LoadingPage />;
+    return <AssetPoRConfirmLoading />;
   }
 
   const { myCommitment, commitments } = data;
