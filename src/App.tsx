@@ -27,8 +27,8 @@ export const App = () => {
       <RecoilProvider>
         <UIProvider>
           <MutationIndicatorProvider>
-            <Toast />
             <RootNavigator />
+            <Toast />
           </MutationIndicatorProvider>
         </UIProvider>
       </RecoilProvider>

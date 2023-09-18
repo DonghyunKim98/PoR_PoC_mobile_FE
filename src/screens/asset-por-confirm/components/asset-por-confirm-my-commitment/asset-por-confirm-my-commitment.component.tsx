@@ -18,7 +18,7 @@ export const AssetPoRConfirmMyCommitment =
 
     const handlePressMyCommitment = () => {
       Clipboard.setString(`${myCommitment[0]},${myCommitment[1]}`);
-      Toast.show({ type: 'success', topOffset: 60 });
+      Toast.show({ type: 'success', topOffset: 80 });
     };
 
     return (

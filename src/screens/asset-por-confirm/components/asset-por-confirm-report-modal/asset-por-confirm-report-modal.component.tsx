@@ -7,10 +7,13 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import Modal from 'react-native-modal';
+import { useDidUpdate } from 'rooks';
 
+import { usePostReportMutation } from './hooks';
 import ReportSuccessSVG from './report_success.svg';
 
 import { Text } from '@/atoms';
+import { MutationIndicator } from '@/providers';
 import { palette } from '@/utils';
 
 type AssetPorConfirmReportModalProps = {
@@ -23,6 +26,14 @@ export const AssetPorConfirmReportModal = memo<AssetPorConfirmReportModalProps>(
     const { t } = useTranslation();
     const { width } = useWindowDimensions();
 
+    const { isLoading, mutateAsync } = usePostReportMutation();
+
+    useDidUpdate(() => {
+      if (isVisible) {
+        mutateAsync();
+      }
+    }, [isVisible]);
+
     const maxDeviceHeight = Math.max(
       Dimensions.get('window').height,
       Dimensions.get('screen').height,
@@ -31,6 +42,10 @@ export const AssetPorConfirmReportModal = memo<AssetPorConfirmReportModalProps>(
     const handlePressConfirmButton = () => {
       onPressConfirmButton();
     };
+
+    if (isLoading) {
+      return <MutationIndicator isMutating={isLoading} />;
+    }
 
     return (
       <Modal
