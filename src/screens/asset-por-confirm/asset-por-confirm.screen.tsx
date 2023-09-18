@@ -50,8 +50,7 @@ export const AssetPoRConfirmScreen = ({}: AssetPoRConfirmScreenProps) => {
   const { isLoading, data } = useGetPoRForUserQuery({ key, assetId });
 
   if (isLoading || !data || count !== 0) {
-    // TODO : 전용 Loading Page 제작
-    return <AssetPoRConfirmLoading />;
+    return <AssetPoRConfirmLoading count={count} />;
   }
 
   const { myCommitment, commitments } = data;
