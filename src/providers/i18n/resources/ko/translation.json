@@ -14,5 +14,19 @@
   "AssetPorConfirmScreen_allCommitment_myCommitment": "내 자산",
   "assetProConfirmScreen_myInfo_report": "제보하기",
   "AssetPorConfirmScreen_reportModal_confirmButton": "확인",
-  "AssetPorConfirmScreen_reportModal_title": "{{companyName}}에 제보되었습니다"
+  "AssetPorConfirmScreen_reportModal_title": "{{companyName}}에 제보되었습니다",
+  "SingleAsset_id1_name": "삼성동 리치빌딩",
+  "SingleAsset_id1_companyName": "리치 건설",
+  "SingleAsset_id2_name": "압구정 현대아파트",
+  "SingleAsset_id2_companyName": "왕십리 물산",
+  "SingleAsset_id3_name": "현대 미술관 조각품",
+  "SingleAsset_id3_companyName": "꽃밭 물산",
+  "SingleAsset_id4_name": "스피드 자동차 컬렉션",
+  "SingleAsset_id4_companyName": "스피드 그룹",
+  "SingleAsset_id5_name": "오 스타트업 주식",
+  "SingleAsset_id5_companyName": "오 스타트업",
+  "SingleAsset_id6_name": "지크립토 CBDC",
+  "SingleAsset_id6_companyName": "zk뱅크",
+  "SingleAsset_id7_name": "이더리움",
+  "SingleAsset_id7_companyName": "이더리움 재단"
 }

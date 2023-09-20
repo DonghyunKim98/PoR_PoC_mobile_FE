@@ -63,7 +63,7 @@ export const AssetListAssetItem = memo<AssetListAssetItemProps>(
                         fontSize="20"
                         lineHeight={20}
                         color="primary">
-                        {name}
+                        {t(`SingleAsset_id${assetId}_name`)}
                       </Text>
                       <Stack space={6} horizontal align="bottom">
                         <Text
