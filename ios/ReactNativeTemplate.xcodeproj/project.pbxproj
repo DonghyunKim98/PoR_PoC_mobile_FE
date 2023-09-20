@@ -547,6 +547,7 @@
 				DEVELOPMENT_TEAM = WVG9P3BNQ7;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ReactNativeTemplate/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "ZK PoR";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -557,7 +558,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ZKPoR;
 				PRODUCT_NAME = ReactNativeTemplate;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -577,6 +578,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WVG9P3BNQ7;
 				INFOPLIST_FILE = ReactNativeTemplate/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "ZK PoR";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -587,7 +589,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ZKPoR;
 				PRODUCT_NAME = ReactNativeTemplate;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
