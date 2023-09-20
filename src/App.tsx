@@ -22,6 +22,8 @@ export const App = () => {
   dayjs.extend(isToday);
   dayjs.locale('ko');
 
+  console.log('전부 복귀!');
+
   return (
     <QueryClientProvider>
       <RecoilProvider>
