@@ -73,9 +73,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.reactnativetemplate"
+    namespace "com.ZKPoR"
     defaultConfig {
-        applicationId "com.reactnativetemplate"
+        applicationId "com.ZKPoR"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
