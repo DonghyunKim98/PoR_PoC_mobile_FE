@@ -60,7 +60,7 @@ export const AssetPoRConfirmScreen = ({}: AssetPoRConfirmScreenProps) => {
   return (
     <>
       <Header
-        title="이더리움"
+        title={t(`SingleAsset_id${assetId}_name`)}
         titleColor="gray-500"
         leftIconColor="white"
         backgroundColor="primary"

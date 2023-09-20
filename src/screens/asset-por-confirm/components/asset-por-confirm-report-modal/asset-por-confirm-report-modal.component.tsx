@@ -1,4 +1,5 @@
 import { Box, Stack } from '@mobily/stacks';
+import { useRoute } from '@react-navigation/native';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -8,6 +9,8 @@ import {
 } from 'react-native';
 import Modal from 'react-native-modal';
 import { useDidUpdate } from 'rooks';
+
+import { AssetPoRConfirmScreenNavigationRouteProps } from '../../asset-por-confirm.screen';
 
 import { usePostReportMutation } from './hooks';
 import ReportSuccessSVG from './report_success.svg';
@@ -27,6 +30,9 @@ export const AssetPorConfirmReportModal = memo<AssetPorConfirmReportModalProps>(
     const { width } = useWindowDimensions();
 
     const { isLoading, mutateAsync } = usePostReportMutation();
+    const {
+      params: { assetId },
+    } = useRoute<AssetPoRConfirmScreenNavigationRouteProps>();
 
     useDidUpdate(() => {
       if (isVisible) {
@@ -79,7 +85,7 @@ export const AssetPorConfirmReportModal = memo<AssetPorConfirmReportModalProps>(
                   lineHeight={20}
                   color="primary">
                   {t('AssetPorConfirmScreen_reportModal_title', {
-                    companyName: '이더리움 재단',
+                    companyName: t(`SingleAsset_id${assetId}_companyName`),
                   })}
                 </Text>
               </Stack>
