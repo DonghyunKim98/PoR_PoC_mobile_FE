@@ -17,7 +17,7 @@ export const AssetPoRConfirmLoading = memo<AssetPorConfirmLoadingProps>(
     return (
       <Box
         flex="fluid"
-        style={{ backgroundColor: 'rgba(7, 11, 34, 0.70)', width: '100%' }}
+        style={{ backgroundColor: 'rgba(7, 11, 34, 0.80)', width: '100%' }}
         alignX="center"
         alignY="center">
         <Stack space={8} align="center">
