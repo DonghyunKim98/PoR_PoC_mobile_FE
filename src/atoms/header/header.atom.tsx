@@ -1,4 +1,5 @@
 import { Box } from '@mobily/stacks';
+import { useBackHandler } from '@react-native-community/hooks';
 import { useNavigation } from '@react-navigation/native';
 import { memo } from 'react';
 import { TouchableOpacity } from 'react-native';
@@ -18,6 +19,14 @@ type HeaderProps = {
 export const Header = memo<HeaderProps>(
   ({ title, leftIconColor, titleColor, backgroundColor }: HeaderProps) => {
     const navigation = useNavigation();
+
+    useBackHandler(() => {
+      if (navigation.canGoBack()) {
+        navigation.goBack();
+        return true;
+      }
+      return false;
+    });
 
     const renderLeft = () => {
       const handlePressLeftButton = () => {
