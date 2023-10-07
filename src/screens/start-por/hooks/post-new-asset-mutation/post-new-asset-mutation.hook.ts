@@ -10,7 +10,7 @@ type postNewAssetReturnData = {
 export const usePostNewAssetMutation = () => {
   return useMutation(async () => {
     const { data } = await defaultAxios.post<postNewAssetReturnData>(
-      'api/new-assets',
+      'api/assets/new',
     );
 
     return data;
