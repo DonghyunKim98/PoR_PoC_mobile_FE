@@ -31,11 +31,12 @@ type PrimaryOverTheCounterMarketCheckAssetModalProps = {
   assetId: string;
   isVisible: boolean;
   type: CheckAssetModalType;
+  onNavigate: () => void;
 };
 
 export const PrimaryOverTheCounterMarketCheckAssetModal =
   memo<PrimaryOverTheCounterMarketCheckAssetModalProps>(
-    ({ isVisible, type, assetId }) => {
+    ({ isVisible, type, assetId, onNavigate }) => {
       const { width } = useWindowDimensions();
       const [screenStep, setScreenStep] =
         useState<CheckAssetModalStep>('CHECK_ASSET');
@@ -74,6 +75,14 @@ export const PrimaryOverTheCounterMarketCheckAssetModal =
       }, [data, isCountDownEnd]);
 
       const handlePressCTA = () => {
+        onNavigate();
+        setScreenStep('CHECK_ASSET');
+        setIsCountDownEnd(false);
+
+        if (screenStep === 'NOT_COINCIDED') {
+          return;
+        }
+
         if (type === 'BUY') {
           navigation.navigate('AssetBuyScreen');
           return;

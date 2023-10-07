@@ -24,6 +24,7 @@ export const useGetPoRForUserQuery = ({
   enabled = true,
 }: getPorForUserParams) => {
   return useQuery<getPorForUserResponseData>(['/api/por', { key, assetId }], {
+    cacheTime: 0,
     suspense: false,
     enabled,
   });

@@ -62,6 +62,14 @@ export const PrimaryOverTheCounterMarketItem =
         });
       };
 
+      const onNavigateBuyScreen = () => {
+        setIsBuyModalVisible(false);
+      };
+
+      const onNavigateSellScreen = () => {
+        setIsSellModalVisible(false);
+      };
+
       const handlePressBuyButton = () => {
         setIsBuyModalVisible(true);
       };
@@ -72,16 +80,23 @@ export const PrimaryOverTheCounterMarketItem =
 
       return (
         <>
-          <PrimaryOverTheCounterMarketCheckAssetModal
-            assetId={assetId}
-            isVisible={isBuyModalVisible}
-            type="BUY"
-          />
-          <PrimaryOverTheCounterMarketCheckAssetModal
-            assetId={assetId}
-            isVisible={isSellModalVisible}
-            type="SELL"
-          />
+          {isBuyModalVisible && (
+            <PrimaryOverTheCounterMarketCheckAssetModal
+              assetId={assetId}
+              isVisible={isBuyModalVisible}
+              type="BUY"
+              onNavigate={onNavigateBuyScreen}
+            />
+          )}
+          {isSellModalVisible && (
+            <PrimaryOverTheCounterMarketCheckAssetModal
+              assetId={assetId}
+              isVisible={isSellModalVisible}
+              type="SELL"
+              onNavigate={onNavigateSellScreen}
+            />
+          )}
+
           <Box
             style={{
               borderRadius: 5,
