@@ -26,6 +26,7 @@ export type fontSizeType =
   | '18'
   | '20'
   | '23'
+  | '25'
   | '28';
 export type fontColorType = keyof typeof palette;
 

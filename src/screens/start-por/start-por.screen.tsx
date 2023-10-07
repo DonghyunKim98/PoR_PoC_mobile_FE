@@ -56,7 +56,7 @@ export const StartPoRScreen = ({}: StartPoRScreenProps) => {
               <Stack space={40} align="center" paddingTop={50}>
                 <Text
                   fontWeight="300"
-                  fontSize="28"
+                  fontSize="25"
                   lineHeight={36}
                   color="primary"
                   textAlignment="center">
@@ -98,7 +98,7 @@ export const StartPoRScreen = ({}: StartPoRScreenProps) => {
                       lineHeight={19.5}
                       color="white"
                       textAlignment="center">
-                      내 자산 생성
+                      {t('StartPoRScreen_content_CTA')}
                     </Text>
                   </Box>
                 </TouchableOpacity>
