@@ -2,7 +2,7 @@ import { Box, Stack } from '@mobily/stacks';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image } from 'react-native';
+import { Image, Pressable } from 'react-native';
 
 import {
   PrimaryOverTheCounterMarketScreenNavigatorProp,
@@ -11,7 +11,7 @@ import {
 
 import { Text } from '@/atoms';
 import { getReadAssetsResponseData } from '@/hooks';
-import { palette } from '@/utils';
+import { addCommasToNumber, palette } from '@/utils';
 
 type PrimaryOverTheCounterMarketItemProps =
   getReadAssetsResponseData['data'][0];
@@ -31,7 +31,7 @@ const ItemPriceContent = ({
         {title}
       </Text>
       <Text fontSize="16" fontWeight="600" lineHeight={20} color="primary">
-        {num}
+        {addCommasToNumber(num)}
         <Text fontSize="12" fontWeight="300" lineHeight={20} color="gray-700">
           {'  ' + unit}
         </Text>
@@ -50,6 +50,13 @@ export const PrimaryOverTheCounterMarketItem =
       } = useRoute<PrimaryOverTheCounterMarketScreenRouteProp>();
 
       const { t } = useTranslation();
+
+      const handlePressAssetPoRConfirmScreen = () => {
+        navigation.navigate('AssetPoRConfirmScreen', {
+          key,
+          assetId,
+        });
+      };
 
       return (
         <Box
@@ -104,58 +111,82 @@ export const PrimaryOverTheCounterMarketItem =
             paddingX={12}
             paddingY={12}>
             <ItemPriceContent title="내 자산" num={myAsset} unit={unit} />
-            <Box
-              paddingX={16}
-              paddingY={3}
-              style={{
-                borderRadius: 50,
-                borderColor: palette['primary'],
-                borderWidth: 0.5,
-              }}>
-              <Text
-                fontWeight="600"
-                fontSize="14"
-                lineHeight={20}
-                color="primary">
-                데이터 확인
-              </Text>
-            </Box>
+            <Pressable onPress={handlePressAssetPoRConfirmScreen}>
+              {({ pressed }) => (
+                <Box
+                  paddingX={16}
+                  paddingY={3}
+                  style={[
+                    {
+                      borderRadius: 50,
+                      borderColor: palette['primary'],
+                      borderWidth: 0.5,
+                    },
+                    pressed && {
+                      backgroundColor: palette['greenBackground'],
+                      borderColor: palette['greenBackground'],
+                    },
+                  ]}>
+                  <Text
+                    fontWeight="600"
+                    fontSize="14"
+                    lineHeight={20}
+                    color={pressed ? 'white' : 'primary'}>
+                    데이터 확인
+                  </Text>
+                </Box>
+              )}
+            </Pressable>
           </Box>
           <Box direction="row">
-            <Box
-              alignX="center"
-              flex="fluid"
-              paddingY={14}
-              style={{
-                borderBottomLeftRadius: 5,
-                borderRightWidth: 1,
-                borderRightColor: palette['white'],
-                backgroundColor: palette['gray-700'],
-              }}>
-              <Text
-                fontSize="14"
-                fontWeight="600"
-                color="white"
-                lineHeight={20}>
-                매도
-              </Text>
-            </Box>
-            <Box
-              alignX="center"
-              flex="fluid"
-              paddingY={14}
-              style={{
-                borderBottomRightRadius: 5,
-                backgroundColor: palette['primary'],
-              }}>
-              <Text
-                fontSize="14"
-                fontWeight="600"
-                color="white"
-                lineHeight={20}>
-                매수
-              </Text>
-            </Box>
+            <Pressable style={{ flex: 1 }}>
+              {({ pressed }) => (
+                <Box
+                  alignX="center"
+                  flex="fluid"
+                  paddingY={14}
+                  style={[
+                    {
+                      borderBottomLeftRadius: 5,
+                      borderRightWidth: 1,
+                      borderRightColor: palette['white'],
+                      backgroundColor: palette['gray-700'],
+                    },
+                    pressed && { backgroundColor: palette['greenBackground'] },
+                  ]}>
+                  <Text
+                    fontSize="14"
+                    fontWeight="600"
+                    color="white"
+                    lineHeight={20}>
+                    매도
+                  </Text>
+                </Box>
+              )}
+            </Pressable>
+            <Pressable style={{ flex: 1 }}>
+              {({ pressed }) => (
+                <Box
+                  alignX="center"
+                  flex="fluid"
+                  paddingY={14}
+                  style={[
+                    {
+                      borderBottomRightRadius: 5,
+                      backgroundColor: palette['primary'],
+                    },
+                    pressed && { backgroundColor: palette['greenBackground'] },
+                  ]}>
+                  <Text
+                    fontSize="14"
+                    fontWeight="600"
+                    color="white"
+                    lineHeight={20}>
+                    매수
+                  </Text>
+                </Box>
+              )}
+            </Pressable>
           </Box>
         </Box>
       );
