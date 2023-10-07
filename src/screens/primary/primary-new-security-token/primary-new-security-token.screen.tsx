@@ -28,7 +28,7 @@ export const PrimaryNewSecurityTokenScreen =
   ({}: PrimaryNewSecurityTokenScreenProps) => {
     return (
       <Text fontSize="14" fontWeight="400" lineHeight={16} color="primary">
-        장외거래소
+        신규토큰증권
       </Text>
     );
   };

@@ -6,8 +6,8 @@ import { RootStackParamList } from '../root.navigator';
 
 import { PrimaryNewSecurityTokenScreen } from './primary-new-security-token';
 import { PrimaryOverTheCounterMarketScreen } from './primary-over-the-counter-market';
+import { PrimaryTabBarIcon } from './primary-tab-bar-icon.component';
 
-import { Icon } from '@/atoms';
 import { palette } from '@/utils';
 
 export type PrimaryNavigatorParamLists = {
@@ -36,17 +36,22 @@ export const PrimaryNavigator = () => {
           fontFamily: 'Pretendard-Medium',
           fontSize: 12,
           fontWeight: '500',
-          lineHeight: 18,
+          lineHeight: 16,
           letterSpacing: -12 * 0.04,
         },
         tabBarStyle: {
           height: 60,
-          paddingTop: 8,
-          paddingBottom: 8,
+
           backgroundColor: palette['white'],
+          alignItems: 'center',
+          justifyContent: 'center',
         },
-        tabBarActiveTintColor: palette['gray-300'],
-        tabBarInactiveTintColor: palette['gray-500'],
+        tabBarItemStyle: {
+          marginHorizontal: 15,
+          flex: 0,
+        },
+        tabBarActiveTintColor: palette['primary'],
+        tabBarInactiveTintColor: palette['primary'],
         headerShown: false,
       }}>
       <Tab.Screen
@@ -54,21 +59,15 @@ export const PrimaryNavigator = () => {
         component={PrimaryOverTheCounterMarketScreen}
         options={{
           tabBarLabel: '장외거래소',
-          tabBarIcon: ({ color }) => {
-            return (
-              <Icon color={color} size={24} name="card-bulleted-outline" />
-            );
-          },
+          tabBarIcon: ({ focused }) => <PrimaryTabBarIcon focused={focused} />,
         }}
       />
       <Tab.Screen
-        name="PrimaryOverTheCounterMarketScreen"
+        name="PrimaryNewSecurityToken"
         component={PrimaryNewSecurityTokenScreen}
         options={{
           tabBarLabel: '신규토큰증권',
-          tabBarIcon: ({ color }) => {
-            return <Icon color={color} size={24} name="bell-outline" />;
-          },
+          tabBarIcon: ({ focused }) => <PrimaryTabBarIcon focused={focused} />,
         }}
       />
     </Tab.Navigator>
