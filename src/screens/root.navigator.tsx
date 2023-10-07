@@ -6,7 +6,6 @@ import {
 } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { AssetListScreen } from './asset-list';
 import { AssetPoRConfirmScreen } from './asset-por-confirm';
 import { PrimaryNavigator, PrimaryNavigatorParamLists } from './primary';
 import { StartPoRScreen } from './start-por';
@@ -15,7 +14,6 @@ import { LoadingPage } from '@/layouts';
 
 export type RootStackParamList = {
   StartPoRScreen: undefined;
-  AssetListScreen: { key: string };
   AssetPoRConfirmScreen: { key: string; assetId: string };
   PrimaryStack: NavigatorScreenParams<PrimaryNavigatorParamLists>;
 };
@@ -35,7 +33,7 @@ export const RootNavigator = ({}: RootNavigatorProps) => {
         initialRouteName="StartPoRScreen"
         screenOptions={{ headerShown: false }}>
         <Stack.Screen name="StartPoRScreen" component={StartPoRScreen} />
-        <Stack.Screen name="AssetListScreen" component={AssetListScreen} />
+
         <Stack.Screen
           name="AssetPoRConfirmScreen"
           component={AssetPoRConfirmScreen}

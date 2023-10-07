@@ -8,7 +8,6 @@ import {
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
 
-import { AssetListScreenNavigationRouteProps } from '../../asset-list';
 import {
   PrimaryNavigatorParamLists,
   PrimaryNavigatorProps,
@@ -44,7 +43,7 @@ export const PrimaryOverTheCounterMarketScreen =
   ({}: PrimaryOverTheCounterMarketScreenProps) => {
     const {
       params: { key },
-    } = useRoute<AssetListScreenNavigationRouteProps>();
+    } = useRoute<PrimaryOverTheCounterMarketScreenRouteProp>();
 
     const { isLoading, data } = useGetReadAssetsQuery({ key });
     const { t } = useTranslation();
