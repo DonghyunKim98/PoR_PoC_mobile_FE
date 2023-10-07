@@ -1,24 +1,36 @@
 import { Box, Stack, useWindowDimensions } from '@mobily/stacks';
 import { useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
-import { memo } from 'react';
-import { Dimensions } from 'react-native';
+import { memo, useState } from 'react';
+import { Dimensions, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
 
 import { PrimaryOverTheCounterMarketScreenNavigatorProp } from '../../primary-over-the-counter-market.screen';
+
+import { CHECK_ASSET_LOTTIE } from './assets';
+import {
+  CheckAssetModalStep,
+  CheckAssetModalType,
+} from './primary-over-the-counter-market-check-asset-modal.type';
+import {
+  getButtonTextByModalTypeAndStep,
+  getTextByModalTypeAndStep,
+} from './primary-over-the-counter-market-check-asset-modal.util';
 
 import { Text } from '@/atoms';
 import { palette } from '@/utils';
 
 type PrimaryOverTheCounterMarketCheckAssetModalProps = {
   isVisible: boolean;
-  type: 'BUY' | 'SELL';
+  type: CheckAssetModalType;
 };
 
 export const PrimaryOverTheCounterMarketCheckAssetModal =
   memo<PrimaryOverTheCounterMarketCheckAssetModalProps>(
     ({ isVisible, type }) => {
       const { width } = useWindowDimensions();
+      const [screenStep, setScreenStep] =
+        useState<CheckAssetModalStep>('CHECK_ASSET');
 
       const navigation =
         useNavigation<PrimaryOverTheCounterMarketScreenNavigatorProp>();
@@ -46,9 +58,9 @@ export const PrimaryOverTheCounterMarketCheckAssetModal =
             alignSelf="center"
             flex="fluid"
             style={{ width: '100%' }}>
-            <Stack space={8} align="center">
+            <Stack space={20} align="center">
               <LottieView
-                source={require('./check-asset-lottie.json')}
+                source={CHECK_ASSET_LOTTIE}
                 autoPlay
                 loop
                 style={{ width: 170, height: 100 }}
@@ -59,10 +71,29 @@ export const PrimaryOverTheCounterMarketCheckAssetModal =
                 lineHeight={30}
                 color="white"
                 textAlignment="center">
-                {type === 'BUY'
-                  ? '관리기관에 매수 가능 잔고가\n존재하는지 확인중에 있습니다'
-                  : '관리기관에 매도 가능 잔고가\n존재하는지 확인중에 있습니다.'}
+                {getTextByModalTypeAndStep(type, screenStep)}
               </Text>
+              <TouchableOpacity
+                style={[
+                  {
+                    width: 120,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  },
+                  screenStep !== 'CHECK_ASSET' && {
+                    borderWidth: 1,
+                    borderColor: palette['white'],
+                    borderRadius: 50,
+                  },
+                ]}>
+                <Text
+                  fontWeight="500"
+                  fontSize="16"
+                  lineHeight={32}
+                  color="white">
+                  {getButtonTextByModalTypeAndStep(type, screenStep)}
+                </Text>
+              </TouchableOpacity>
             </Stack>
           </Box>
         </Modal>
