@@ -2,17 +2,16 @@ import { Stack } from '@mobily/stacks';
 import { Image } from 'react-native';
 
 import { Text } from '@/atoms';
+import { addCommasToNumber } from '@/utils';
 
 type AssetPorConfirmTotalInfoComponentProps = {
   logoUrl: string;
-  name: string;
   totalAsset: string;
   unit: string;
 };
 
 export const AssetPoRConfirmTotalInfoComponent = ({
   logoUrl,
-  name,
   totalAsset,
   unit,
 }: AssetPorConfirmTotalInfoComponentProps) => {
@@ -25,7 +24,7 @@ export const AssetPoRConfirmTotalInfoComponent = ({
           fontSize="20"
           lineHeight={23.87}
           color="gray-500">
-          {name}
+          전체 자산
         </Text>
         <Stack space={5} horizontal align="bottom">
           <Text
@@ -33,7 +32,7 @@ export const AssetPoRConfirmTotalInfoComponent = ({
             fontSize="18"
             lineHeight={21.48}
             color="gray-700">
-            {totalAsset}
+            {addCommasToNumber(totalAsset)}
           </Text>
           <Text
             fontWeight="400"

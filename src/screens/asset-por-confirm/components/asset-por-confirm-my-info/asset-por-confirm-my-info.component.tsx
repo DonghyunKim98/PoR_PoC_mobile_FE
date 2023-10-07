@@ -1,12 +1,11 @@
 import { Box, Stack } from '@mobily/stacks';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TouchableOpacity } from 'react-native';
 
 import { AssetPorConfirmReportModal } from '../asset-por-confirm-report-modal';
 
 import { Icon, Text } from '@/atoms';
-import { palette } from '@/utils';
+import { addCommasToNumber, palette } from '@/utils';
 
 type AssetPoRConfirmMyInfoComponentProps = {
   isIncluded: boolean;
@@ -41,35 +40,56 @@ export const AssetPoRConfirmMyInfoComponent = memo(
           isVisible={isVisibleReportModal}
         />
         <Stack space={20}>
-          <Stack space={8}>
+          <Stack space={20}>
             <Stack horizontal space={6} align="center">
-              <Icon name="check-circle" size={16} color={palette['green']} />
+              <Stack horizontal space={6} align="center" style={{ width: 110 }}>
+                <Icon name="check-circle" size={30} color={palette['green']} />
+                <Text
+                  fontSize="12"
+                  fontWeight="400"
+                  lineHeight={15}
+                  color="green">
+                  {'내 자산이\n전체 자산 안에'}
+                </Text>
+              </Stack>
+
               <Text
                 fontWeight="700"
-                fontSize="14"
-                lineHeight={14}
+                fontSize="28"
+                lineHeight={30}
                 color="green">
-                {t('assetProConfirmScreen_myInfo_isIncluded_true')}
+                포함되어 있습니다.
               </Text>
             </Stack>
             <Box direction="row" alignX="between">
               <Stack horizontal space={6} align="center">
-                <Icon
-                  name="check-circle"
-                  size={16}
-                  color={isCoincided ? palette['white'] : palette['error']}
-                />
+                <Stack
+                  horizontal
+                  space={6}
+                  align="center"
+                  style={{ minWidth: 110 }}>
+                  <Icon
+                    name="check-circle"
+                    size={30}
+                    color={isCoincided ? palette['white'] : palette['error']}
+                  />
+                  <Text
+                    fontSize="12"
+                    fontWeight="400"
+                    lineHeight={15}
+                    color={isCoincided ? 'white' : 'error'}>
+                    {'공표된 자산이\n실제 총자산과'}
+                  </Text>
+                </Stack>
                 <Text
                   fontWeight="700"
-                  fontSize="14"
-                  lineHeight={14}
+                  fontSize="28"
+                  lineHeight={30}
                   color={isCoincided ? 'white' : 'error'}>
-                  {isCoincided
-                    ? t('assetProConfirmScreen_myInfo_isCoincided_true')
-                    : t('assetProConfirmScreen_myInfo_isCoincided_false')}
+                  {isCoincided ? '일치 합니다' : '불일치 합니다'}
                 </Text>
               </Stack>
-              {!isCoincided && (
+              {/* {!isCoincided && (
                 <TouchableOpacity onPress={handlePressReportButton}>
                   <Box
                     paddingX={9}
@@ -87,7 +107,7 @@ export const AssetPoRConfirmMyInfoComponent = memo(
                     </Text>
                   </Box>
                 </TouchableOpacity>
-              )}
+              )} */}
             </Box>
           </Stack>
           <Box
@@ -117,7 +137,7 @@ export const AssetPoRConfirmMyInfoComponent = memo(
                 fontSize="20"
                 lineHeight={20}
                 color="white">
-                {myAsset}
+                {addCommasToNumber(myAsset)}
               </Text>
               <Text
                 fontWeight="400"
