@@ -53,7 +53,7 @@ export const StartPoRScreen = ({}: StartPoRScreenProps) => {
         <BasicLayout>
           <Rows>
             <Row height="fluid">
-              <Stack space={80} align="center" paddingTop={50}>
+              <Stack space={40} align="center" paddingTop={50}>
                 <Text
                   fontWeight="300"
                   fontSize="28"
@@ -64,7 +64,7 @@ export const StartPoRScreen = ({}: StartPoRScreenProps) => {
                 </Text>
                 <Image
                   source={START_SCREEN_BANNER_IMG}
-                  style={{ width: 178, height: 186 }}
+                  style={{ width: 240, height: 140 }}
                 />
               </Stack>
             </Row>

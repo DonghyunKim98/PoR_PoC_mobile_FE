@@ -1,7 +1,6 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import isToday from 'dayjs/plugin/isToday';
-import { initializeMMKVFlipper } from 'react-native-mmkv-flipper-plugin';
 
 import './providers/i18n';
 import { Toast } from './atoms';
@@ -12,11 +11,6 @@ import {
   UIProvider,
 } from './providers';
 import { RootNavigator } from './screens';
-import { defaultStorage } from './utils';
-
-if (__DEV__) {
-  initializeMMKVFlipper({ default: defaultStorage });
-}
 
 export const App = () => {
   dayjs.extend(isToday);
