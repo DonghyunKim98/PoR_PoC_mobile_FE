@@ -1,12 +1,14 @@
 import { useFlipper } from '@react-navigation/devtools';
 import {
   NavigationContainer,
+  NavigatorScreenParams,
   useNavigationContainerRef,
 } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { AssetListScreen } from './asset-list';
 import { AssetPoRConfirmScreen } from './asset-por-confirm';
+import { PrimaryNavigator, PrimaryNavigatorParamLists } from './primary';
 import { StartPoRScreen } from './start-por';
 
 import { LoadingPage } from '@/layouts';
@@ -15,6 +17,7 @@ export type RootStackParamList = {
   StartPoRScreen: undefined;
   AssetListScreen: { key: string };
   AssetPoRConfirmScreen: { key: string; assetId: string };
+  PrimaryStack: NavigatorScreenParams<PrimaryNavigatorParamLists>;
 };
 
 type RootNavigatorProps = {};
@@ -37,6 +40,7 @@ export const RootNavigator = ({}: RootNavigatorProps) => {
           name="AssetPoRConfirmScreen"
           component={AssetPoRConfirmScreen}
         />
+        <Stack.Screen name="PrimaryStack" component={PrimaryNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );

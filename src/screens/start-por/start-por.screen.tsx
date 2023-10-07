@@ -38,7 +38,10 @@ export const StartPoRScreen = ({}: StartPoRScreenProps) => {
 
   const handlePressCTAButton = async () => {
     const { key } = await mutateAsync();
-    navigation.navigate('AssetListScreen', { key });
+    navigation.navigate('PrimaryStack', {
+      screen: 'PrimaryOverTheCounterMarketScreen',
+      params: { key },
+    });
   };
 
   return (
