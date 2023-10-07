@@ -1,44 +1,85 @@
 import { Box, Stack, useWindowDimensions } from '@mobily/stacks';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { isUndefined } from 'lodash';
 import LottieView from 'lottie-react-native';
-import { memo, useState } from 'react';
+import { memo, useRef, useState } from 'react';
 import { Dimensions, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
+import { useCountdown, useDidUpdate } from 'rooks';
 
-import { PrimaryOverTheCounterMarketScreenNavigatorProp } from '../../primary-over-the-counter-market.screen';
+import {
+  PrimaryOverTheCounterMarketScreenNavigatorProp,
+  PrimaryOverTheCounterMarketScreenRouteProp,
+} from '../../primary-over-the-counter-market.screen';
 
-import { CHECK_ASSET_LOTTIE } from './assets';
 import {
   CheckAssetModalStep,
   CheckAssetModalType,
 } from './primary-over-the-counter-market-check-asset-modal.type';
 import {
   getButtonTextByModalTypeAndStep,
+  getLottieSourceByModalStep,
   getTextByModalTypeAndStep,
+  getTextColorByStep,
 } from './primary-over-the-counter-market-check-asset-modal.util';
 
 import { Text } from '@/atoms';
+import { useGetPoRForUserQuery } from '@/hooks';
 import { palette } from '@/utils';
 
 type PrimaryOverTheCounterMarketCheckAssetModalProps = {
+  assetId: string;
   isVisible: boolean;
   type: CheckAssetModalType;
 };
 
 export const PrimaryOverTheCounterMarketCheckAssetModal =
   memo<PrimaryOverTheCounterMarketCheckAssetModalProps>(
-    ({ isVisible, type }) => {
+    ({ isVisible, type, assetId }) => {
       const { width } = useWindowDimensions();
       const [screenStep, setScreenStep] =
         useState<CheckAssetModalStep>('CHECK_ASSET');
+      const [isCountDownEnd, setIsCountDownEnd] = useState(false);
+
+      const endTimeRef = useRef(new Date(Date.now() + 3000));
 
       const navigation =
         useNavigation<PrimaryOverTheCounterMarketScreenNavigatorProp>();
+      const {
+        params: { key },
+      } = useRoute<PrimaryOverTheCounterMarketScreenRouteProp>();
 
       const maxDeviceHeight = Math.max(
         Dimensions.get('window').height,
         Dimensions.get('screen').height,
       );
+
+      const { data } = useGetPoRForUserQuery({
+        key,
+        assetId,
+        enabled: isVisible,
+      });
+
+      useCountdown(endTimeRef.current, {
+        interval: 1000,
+        onEnd: () => setIsCountDownEnd(true),
+      });
+
+      useDidUpdate(() => {
+        if (!isUndefined(data) && isCountDownEnd) {
+          const { isCoincided } = data;
+
+          setScreenStep(isCoincided ? 'CONFIRM_ASSET' : 'NOT_COINCIDED');
+        }
+      }, [data, isCountDownEnd]);
+
+      const handlePressCTA = () => {
+        if (type === 'BUY') {
+          navigation.navigate('AssetBuyScreen');
+          return;
+        }
+        navigation.navigate('AssetSellScreen');
+      };
 
       return (
         <Modal
@@ -59,21 +100,24 @@ export const PrimaryOverTheCounterMarketCheckAssetModal =
             flex="fluid"
             style={{ width: '100%' }}>
             <Stack space={20} align="center">
-              <LottieView
-                source={CHECK_ASSET_LOTTIE}
-                autoPlay
-                loop
-                style={{ width: 170, height: 100 }}
-              />
-              <Text
-                fontWeight="500"
-                fontSize="23"
-                lineHeight={30}
-                color="white"
-                textAlignment="center">
-                {getTextByModalTypeAndStep(type, screenStep)}
-              </Text>
+              <Stack space={8} align="center">
+                <LottieView
+                  source={getLottieSourceByModalStep(screenStep)}
+                  autoPlay
+                  loop
+                  style={{ width: 170, height: 100 }}
+                />
+                <Text
+                  fontWeight="500"
+                  fontSize="23"
+                  lineHeight={30}
+                  color={getTextColorByStep(screenStep)}
+                  textAlignment="center">
+                  {getTextByModalTypeAndStep(type, screenStep)}
+                </Text>
+              </Stack>
               <TouchableOpacity
+                onPress={handlePressCTA}
                 style={[
                   {
                     width: 120,

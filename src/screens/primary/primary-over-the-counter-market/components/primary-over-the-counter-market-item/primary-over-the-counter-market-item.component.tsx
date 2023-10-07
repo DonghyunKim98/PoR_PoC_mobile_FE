@@ -73,10 +73,12 @@ export const PrimaryOverTheCounterMarketItem =
       return (
         <>
           <PrimaryOverTheCounterMarketCheckAssetModal
+            assetId={assetId}
             isVisible={isBuyModalVisible}
             type="BUY"
           />
           <PrimaryOverTheCounterMarketCheckAssetModal
+            assetId={assetId}
             isVisible={isSellModalVisible}
             type="SELL"
           />

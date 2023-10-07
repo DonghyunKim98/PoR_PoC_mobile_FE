@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 export type getPorForUserParams = {
   key: string;
   assetId: string;
+  enabled?: boolean;
 };
 
 export type getPorForUserResponseData = {
@@ -20,8 +21,10 @@ export type getPorForUserResponseData = {
 export const useGetPoRForUserQuery = ({
   key,
   assetId,
+  enabled = true,
 }: getPorForUserParams) => {
   return useQuery<getPorForUserResponseData>(['/api/por', { key, assetId }], {
     suspense: false,
+    enabled,
   });
 };

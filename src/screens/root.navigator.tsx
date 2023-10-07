@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { AssetBuyScreen } from './asset-buy';
 import { AssetPoRConfirmScreen } from './asset-por-confirm';
+import { AssetSellScreen } from './asset-sell';
 import { PrimaryNavigator, PrimaryNavigatorParamLists } from './primary';
 import { StartPoRScreen } from './start-por';
 
@@ -41,6 +42,7 @@ export const RootNavigator = ({}: RootNavigatorProps) => {
           component={AssetPoRConfirmScreen}
         />
         <Stack.Screen name="AssetBuyScreen" component={AssetBuyScreen} />
+        <Stack.Screen name="AssetSellScreen" component={AssetSellScreen} />
         <Stack.Screen name="PrimaryStack" component={PrimaryNavigator} />
       </Stack.Navigator>
     </NavigationContainer>

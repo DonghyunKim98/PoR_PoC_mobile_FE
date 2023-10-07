@@ -1,4 +1,9 @@
 import {
+  CHECK_ASSET_LOTTIE,
+  CHECK_CONFIRM_LOTTIE,
+  NOT_COINCIDED_LOTTIE,
+} from './assets';
+import {
   CheckAssetModalStep,
   CheckAssetModalType,
 } from './primary-over-the-counter-market-check-asset-modal.type';
@@ -31,6 +36,19 @@ export const getTextByModalTypeAndStep = (
   }
 };
 
+export const getTextColorByStep = (step: CheckAssetModalStep) => {
+  switch (step) {
+    case 'CHECK_ASSET':
+      return 'white';
+
+    case 'CONFIRM_ASSET':
+      return 'green-check';
+
+    case 'NOT_COINCIDED':
+      return 'error-asset';
+  }
+};
+
 export const getButtonTextByModalTypeAndStep = (
   type: CheckAssetModalType,
   step: CheckAssetModalStep,
@@ -56,5 +74,18 @@ export const getButtonTextByModalTypeAndStep = (
 
     case 'NOT_COINCIDED':
       return '홈으로 가기';
+  }
+};
+
+export const getLottieSourceByModalStep = (step: CheckAssetModalStep) => {
+  switch (step) {
+    case 'CHECK_ASSET':
+      return CHECK_ASSET_LOTTIE;
+
+    case 'CONFIRM_ASSET':
+      return CHECK_CONFIRM_LOTTIE;
+
+    case 'NOT_COINCIDED':
+      return NOT_COINCIDED_LOTTIE;
   }
 };

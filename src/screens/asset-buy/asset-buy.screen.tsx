@@ -3,6 +3,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import { RootStackParamList } from '../root.navigator';
 
+import { Header } from '@/atoms';
+
 type AssetBuyScreenProps = {};
 
 export type AssetBuyScreenNavigationProps = StackNavigationProp<
@@ -16,5 +18,14 @@ export type AssetBuyScreenNavigationRouteProps = RouteProp<
 >;
 
 export const AssetBuyScreen = ({}: AssetBuyScreenProps) => {
-  return null;
+  return (
+    <>
+      <Header
+        title="토큰 증권 장외 거래소 (매수)"
+        titleColor="primary"
+        leftIconColor="primary"
+        backgroundColor="white"
+      />
+    </>
+  );
 };
