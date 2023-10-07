@@ -6,11 +6,14 @@ export type getReadAssetsParams = {
 
 export type getReadAssetsResponseData = {
   data: {
+    assetId: string;
     name: string;
     logoUrl: string;
     unit: string;
     myAsset: string;
-    assetId: string;
+    balance: string;
+    price: number;
+    maxAmount: string;
   }[];
 };
 

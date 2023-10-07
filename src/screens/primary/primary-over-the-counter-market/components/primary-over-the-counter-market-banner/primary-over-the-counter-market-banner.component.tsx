@@ -17,6 +17,7 @@ export const PrimaryOverTheCounterMarketBanner =
         style={{
           backgroundColor: palette['greenBackground'],
           borderRadius: 5,
+          marginBottom: 20,
         }}>
         {BANNER_ITEMS.map(({ img, title, content }, index) => (
           <Column

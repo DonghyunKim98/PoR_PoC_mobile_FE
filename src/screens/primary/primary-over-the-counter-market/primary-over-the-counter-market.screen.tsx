@@ -1,17 +1,27 @@
 import { Box } from '@mobily/stacks';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
+import {
+  CompositeNavigationProp,
+  RouteProp,
+  useRoute,
+} from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
 
+import { AssetListScreenNavigationRouteProps } from '../../asset-list';
 import {
   PrimaryNavigatorParamLists,
   PrimaryNavigatorProps,
 } from '../primary.navigator';
 
-import { PrimaryOverTheCounterMarketBanner } from './components';
+import {
+  PrimaryOverTheCounterMarketBanner,
+  PrimaryOverTheCounterMarketItem,
+} from './components';
 
 import { Header } from '@/atoms';
+import { useGetReadAssetsQuery } from '@/hooks';
+import { LoadingPage } from '@/layouts';
 import { palette } from '@/utils';
 
 export type PrimaryOverTheCounterMarketScreenNavigatorProp =
@@ -32,7 +42,16 @@ type PrimaryOverTheCounterMarketScreenProps = {};
 
 export const PrimaryOverTheCounterMarketScreen =
   ({}: PrimaryOverTheCounterMarketScreenProps) => {
+    const {
+      params: { key },
+    } = useRoute<AssetListScreenNavigationRouteProps>();
+
+    const { isLoading, data } = useGetReadAssetsQuery({ key });
     const { t } = useTranslation();
+
+    if (isLoading) {
+      return <LoadingPage />;
+    }
 
     return (
       <>
@@ -43,7 +62,7 @@ export const PrimaryOverTheCounterMarketScreen =
           backgroundColor="white"
         />
         <FlatList
-          data={[{ title: '1' }, { title: '2' }]}
+          data={data?.data}
           style={{
             width: '100%',
             backgroundColor: palette['white'],
@@ -51,7 +70,7 @@ export const PrimaryOverTheCounterMarketScreen =
             paddingTop: 10,
           }}
           renderItem={({ item }) => {
-            return <Box />;
+            return <PrimaryOverTheCounterMarketItem {...item} />;
           }}
           ListHeaderComponent={<PrimaryOverTheCounterMarketBanner />}
           ListFooterComponent={<Box style={{ height: 40 }} />}
