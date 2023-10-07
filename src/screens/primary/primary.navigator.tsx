@@ -40,8 +40,8 @@ export const PrimaryNavigator = () => {
           letterSpacing: -12 * 0.04,
         },
         tabBarStyle: {
-          height: 60,
-
+          height: 80,
+          paddingBottom: 20,
           backgroundColor: palette['white'],
           alignItems: 'center',
           justifyContent: 'center',

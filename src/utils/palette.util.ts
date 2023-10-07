@@ -6,6 +6,7 @@ export const palette = {
   primary: '#404E56',
   error: '#FF6388',
   black: '#000000',
+  greenBackground: '#00B140',
   green: '#ACFF76',
   'green-outline': '#64FF00',
   'gray-900': '#070B22',
