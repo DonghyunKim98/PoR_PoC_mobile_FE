@@ -2,12 +2,7 @@ import { Box, Stack } from '@mobily/stacks';
 import { useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
 import { memo, useState } from 'react';
-import {
-  Dimensions,
-  TouchableOpacity,
-  useWindowDimensions,
-} from 'react-native';
-import Modal from 'react-native-modal';
+import { TouchableOpacity } from 'react-native';
 
 import {
   AssetBuyScreenNavigationProps,
@@ -22,7 +17,7 @@ import {
   getTextColorByStep,
 } from './asset-buy-modal.util';
 
-import { Text } from '@/atoms';
+import { Modal, Text } from '@/atoms';
 import { palette } from '@/utils';
 
 type AssetBuyModalProps = {
@@ -47,25 +42,8 @@ export const AssetBuyModal = memo<AssetBuyModalProps>(
       });
     };
 
-    const { width } = useWindowDimensions();
-
-    const maxDeviceHeight = Math.max(
-      Dimensions.get('window').height,
-      Dimensions.get('screen').height,
-    );
-
     return (
-      <Modal
-        animationIn="fadeIn"
-        animationOut="fadeOut"
-        useNativeDriver
-        statusBarTranslucent
-        isVisible={isVisible}
-        backdropColor={palette['gray-900']}
-        deviceHeight={maxDeviceHeight}
-        deviceWidth={width}
-        backdropOpacity={0.8}
-        style={{ margin: 0 }}>
+      <Modal isVisible={isVisible}>
         <Box
           alignX="center"
           alignY="center"

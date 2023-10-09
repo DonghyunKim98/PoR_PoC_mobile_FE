@@ -4,7 +4,6 @@ import { isUndefined } from 'lodash';
 import LottieView from 'lottie-react-native';
 import { memo, useRef, useState } from 'react';
 import { Dimensions, TouchableOpacity } from 'react-native';
-import Modal from 'react-native-modal';
 import { useCountdown, useDidUpdate } from 'rooks';
 
 import {
@@ -23,7 +22,7 @@ import {
   getTextColorByStep,
 } from './primary-over-the-counter-market-check-asset-modal.util';
 
-import { Text } from '@/atoms';
+import { Modal, Text } from '@/atoms';
 import { useGetPoRForUserQuery } from '@/hooks';
 import { palette } from '@/utils';
 
@@ -91,17 +90,7 @@ export const PrimaryOverTheCounterMarketCheckAssetModal =
       };
 
       return (
-        <Modal
-          animationIn="fadeIn"
-          animationOut="fadeOut"
-          useNativeDriver
-          statusBarTranslucent
-          isVisible={isVisible}
-          backdropColor={palette['gray-900']}
-          deviceHeight={maxDeviceHeight}
-          deviceWidth={width}
-          backdropOpacity={0.8}
-          style={{ margin: 0 }}>
+        <Modal isVisible={isVisible}>
           <Box
             alignX="center"
             alignY="center"

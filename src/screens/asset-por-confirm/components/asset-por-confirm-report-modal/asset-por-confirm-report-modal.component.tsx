@@ -2,12 +2,7 @@ import { Box, Stack } from '@mobily/stacks';
 import { useRoute } from '@react-navigation/native';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Dimensions,
-  TouchableOpacity,
-  useWindowDimensions,
-} from 'react-native';
-import Modal from 'react-native-modal';
+import { TouchableOpacity } from 'react-native';
 import { useDidUpdate } from 'rooks';
 
 import { AssetPoRConfirmScreenNavigationRouteProps } from '../../asset-por-confirm.screen';
@@ -15,7 +10,7 @@ import { AssetPoRConfirmScreenNavigationRouteProps } from '../../asset-por-confi
 import { usePostReportMutation } from './hooks';
 import ReportSuccessSVG from './report_success.svg';
 
-import { Text } from '@/atoms';
+import { Modal, Text } from '@/atoms';
 import { MutationIndicator } from '@/providers';
 import { palette } from '@/utils';
 
@@ -27,7 +22,6 @@ type AssetPorConfirmReportModalProps = {
 export const AssetPorConfirmReportModal = memo<AssetPorConfirmReportModalProps>(
   ({ isVisible, onPressConfirmButton }) => {
     const { t } = useTranslation();
-    const { width } = useWindowDimensions();
 
     const { isLoading, mutateAsync } = usePostReportMutation();
     const {
@@ -40,11 +34,6 @@ export const AssetPorConfirmReportModal = memo<AssetPorConfirmReportModalProps>(
       }
     }, [isVisible]);
 
-    const maxDeviceHeight = Math.max(
-      Dimensions.get('window').height,
-      Dimensions.get('screen').height,
-    );
-
     const handlePressConfirmButton = () => {
       onPressConfirmButton();
     };
@@ -54,17 +43,7 @@ export const AssetPorConfirmReportModal = memo<AssetPorConfirmReportModalProps>(
     }
 
     return (
-      <Modal
-        animationIn="fadeIn"
-        animationOut="fadeOut"
-        useNativeDriver
-        statusBarTranslucent
-        isVisible={isVisible}
-        backdropColor={palette['gray-900']}
-        deviceHeight={maxDeviceHeight}
-        deviceWidth={width}
-        backdropOpacity={0.7}
-        style={{ margin: 0 }}>
+      <Modal isVisible={isVisible}>
         <Box
           alignX="center"
           alignY="center"
