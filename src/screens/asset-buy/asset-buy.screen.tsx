@@ -3,10 +3,13 @@ import { RouteProp, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import isUndefined from 'lodash/isUndefined';
 import { useState } from 'react';
+import { FormProvider } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Image, Pressable } from 'react-native';
 
 import { RootStackParamList } from '../root.navigator';
+
+import { useAssetBuyForm } from './hooks';
 
 import { Header, Text, TextInput } from '@/atoms';
 import { useGetReadAssetsQuery } from '@/hooks';
@@ -34,6 +37,7 @@ export const AssetBuyScreen = ({}: AssetBuyScreenProps) => {
   } = useRoute<AssetBuyScreenNavigationRouteProps>();
 
   const { isLoading, data } = useGetReadAssetsQuery({ key });
+  const methods = useAssetBuyForm();
 
   if (isLoading || isUndefined(data)) {
     return <LoadingPage />;
@@ -48,7 +52,7 @@ export const AssetBuyScreen = ({}: AssetBuyScreenProps) => {
   const { logoUrl, price, maxAmount } = currentAssetData;
 
   return (
-    <>
+    <FormProvider {...methods}>
       <Header
         title="토큰 증권 장외 거래소 (매수)"
         titleColor="primary"
@@ -132,6 +136,6 @@ export const AssetBuyScreen = ({}: AssetBuyScreenProps) => {
           </Box>
         </Pressable>
       </Box>
-    </>
+    </FormProvider>
   );
 };
