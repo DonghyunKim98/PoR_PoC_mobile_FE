@@ -3,8 +3,10 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import {
   CompositeNavigationProp,
   RouteProp,
+  useFocusEffect,
   useRoute,
 } from '@react-navigation/native';
+import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
 
@@ -45,8 +47,18 @@ export const PrimaryOverTheCounterMarketScreen =
       params: { key },
     } = useRoute<PrimaryOverTheCounterMarketScreenRouteProp>();
 
-    const { isLoading, data } = useGetReadAssetsQuery({ key });
+    const {
+      isLoading,
+      data,
+      refetch: refetchReadAssetsQuery,
+    } = useGetReadAssetsQuery({ key });
     const { t } = useTranslation();
+
+    useFocusEffect(
+      useCallback(() => {
+        refetchReadAssetsQuery();
+      }, []),
+    );
 
     if (isLoading) {
       return <LoadingPage />;

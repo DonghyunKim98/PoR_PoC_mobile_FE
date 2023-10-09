@@ -1,10 +1,10 @@
 import { Box, Stack } from '@mobily/stacks';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import isUndefined from 'lodash/isUndefined';
 import LottieView from 'lottie-react-native';
 import { memo, useRef, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { useCountdown, useDidUpdate } from 'rooks';
+import { useCountdown, useDidMount, useDidUpdate } from 'rooks';
 
 import {
   AssetBuyScreenNavigationProps,
@@ -37,7 +37,7 @@ export const AssetBuyModal = memo<AssetBuyModalProps>(
     const navigation = useNavigation<AssetBuyScreenNavigationProps>();
     const {
       params: { key, assetId },
-    } = useNavigation<AssetBuyScreenNavigationRouteProps>();
+    } = useRoute<AssetBuyScreenNavigationRouteProps>();
 
     const [isCountDownEnd, setIsCountDownEnd] = useState(false);
     const endTimeRef = useRef(new Date(Date.now() + 3000));
@@ -48,11 +48,9 @@ export const AssetBuyModal = memo<AssetBuyModalProps>(
       amount: value.toString(),
     });
 
-    useDidUpdate(() => {
-      if (isVisible) {
-        mutateAsync();
-      }
-    }, [isVisible]);
+    useDidMount(() => {
+      mutateAsync();
+    });
 
     useCountdown(endTimeRef.current, {
       interval: 1000,

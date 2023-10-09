@@ -7,7 +7,7 @@ export const getTextByModalStep = (step: BuyAssetModalStep) => {
       return '관리기관에 있는 귀하의 잔고에\n정상적인 매수 거래가 이루어졌는지\n확인중입니다.';
 
     case 'CONFIRM_ASSET':
-      return '매수 가능 잔고가 정상적으로\n확인되었습니다';
+      return '귀하의 잔고에 정상적으로\n매수처리 되었습니다.';
   }
 };
 
