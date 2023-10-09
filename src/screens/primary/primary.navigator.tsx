@@ -14,7 +14,9 @@ export type PrimaryNavigatorParamLists = {
   PrimaryOverTheCounterMarketScreen: {
     key: string;
   };
-  PrimaryNewSecurityToken: undefined;
+  PrimaryNewSecurityToken: {
+    key: string;
+  };
 };
 
 const Tab = createBottomTabNavigator<PrimaryNavigatorParamLists>();
