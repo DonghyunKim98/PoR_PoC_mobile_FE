@@ -1,7 +1,10 @@
 import { Box, Stack } from '@mobily/stacks';
+import { useNavigation } from '@react-navigation/native';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, Pressable } from 'react-native';
+
+import { PrimaryNewSecurityTokenScreenNavigatorProp } from '../../primary-new-security-token.screen';
 
 import { Text, Trans } from '@/atoms';
 import { getReadAssetsResponseData } from '@/hooks';
@@ -13,8 +16,15 @@ export const PrimaryNewSecurityTokenItem =
   memo<PrimaryNewSecurityTokenItemProps>(({ logoUrl, assetId }) => {
     const { t } = useTranslation();
 
+    const navigation =
+      useNavigation<PrimaryNewSecurityTokenScreenNavigatorProp>();
+
+    const handlePressItem = () => {
+      navigation.navigate('AssetPoRConfirmScreen', { assetId });
+    };
+
     return (
-      <Pressable>
+      <Pressable onPress={handlePressItem}>
         {({ pressed }) => (
           <Box
             style={[
