@@ -80,9 +80,9 @@ export const PrimaryOverTheCounterMarketScreen =
             paddingTop: 10,
           }}
           ListHeaderComponent={<PrimaryOverTheCounterMarketBanner />}
-          renderItem={({ item }) => {
-            return <PrimaryOverTheCounterMarketItem {...item} />;
-          }}
+          renderItem={({ item }) => (
+            <PrimaryOverTheCounterMarketItem {...item} />
+          )}
           ListFooterComponent={<Box style={{ height: 40 }} />}
           ItemSeparatorComponent={() => <Box style={{ height: 20 }} />}
         />
