@@ -5,22 +5,22 @@ import { useController, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Image } from 'react-native';
 
-import { AssetBuyForm } from '../../hooks';
+import { AssetSellForm } from '../../hooks';
 
 import { Text, TextInput } from '@/atoms';
 import { BasicLayout } from '@/layouts';
 import { palette, addCommasToNumber } from '@/utils';
 
-type AssetBuyInputProps = {
+type AssetSellInputProps = {
   logoUrl: string;
   assetId: string;
   price: number;
   maxAmount: number;
 };
 
-export const AssetBuyInput = memo<AssetBuyInputProps>(
+export const AssetSellInput = memo<AssetSellInputProps>(
   ({ logoUrl, assetId, price, maxAmount }) => {
-    const { control } = useFormContext<AssetBuyForm>();
+    const { control } = useFormContext<AssetSellForm>();
     const {
       field: { value, onChange },
       fieldState,
@@ -28,10 +28,10 @@ export const AssetBuyInput = memo<AssetBuyInputProps>(
       control,
       name: 'value',
       rules: {
-        required: '매수 분량을 입력해주세요',
+        required: '매도 분량을 입력해주세요',
         max: {
           value: maxAmount,
-          message: '매수 가능한 수량이 초과되었습니다',
+          message: '매도 가능한 수량이 초과되었습니다',
         },
         validate: value => {
           if (isNaN(value)) {
@@ -112,7 +112,7 @@ export const AssetBuyInput = memo<AssetBuyInputProps>(
             </Box>
           </Stack>
           <TextInput
-            label={`매수 가능 수량 ${maxAmount} Token`}
+            label={`매도 가능 수량 ${maxAmount} Token`}
             value={value?.toString()}
             onChangeText={onChange}
             error={!isUndefined(fieldState.error)}
