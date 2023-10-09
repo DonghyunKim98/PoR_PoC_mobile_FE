@@ -1,9 +1,9 @@
-import { Box, Stack, useWindowDimensions } from '@mobily/stacks';
+import { Box, Stack } from '@mobily/stacks';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { isUndefined } from 'lodash';
 import LottieView from 'lottie-react-native';
 import { memo, useRef, useState } from 'react';
-import { Dimensions, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { useCountdown, useDidUpdate } from 'rooks';
 
 import {
@@ -36,7 +36,6 @@ type PrimaryOverTheCounterMarketCheckAssetModalProps = {
 export const PrimaryOverTheCounterMarketCheckAssetModal =
   memo<PrimaryOverTheCounterMarketCheckAssetModalProps>(
     ({ isVisible, type, assetId, onNavigate }) => {
-      const { width } = useWindowDimensions();
       const [screenStep, setScreenStep] =
         useState<CheckAssetModalStep>('CHECK_ASSET');
       const [isCountDownEnd, setIsCountDownEnd] = useState(false);
@@ -48,11 +47,6 @@ export const PrimaryOverTheCounterMarketCheckAssetModal =
       const {
         params: { key },
       } = useRoute<PrimaryOverTheCounterMarketScreenRouteProp>();
-
-      const maxDeviceHeight = Math.max(
-        Dimensions.get('window').height,
-        Dimensions.get('screen').height,
-      );
 
       const { data } = useGetPoRForUserQuery({
         key,

@@ -6,7 +6,7 @@ import { palette } from '@/utils';
 
 export type ModalProps = PropsWithChildren<{ isVisible: boolean }>;
 
-export const Modal = (props: ModalProps) => {
+export const Modal = ({ isVisible, children }: ModalProps) => {
   const { width } = useWindowDimensions();
 
   const maxDeviceHeight = Math.max(
@@ -16,7 +16,7 @@ export const Modal = (props: ModalProps) => {
 
   return (
     <RNModal
-      {...props}
+      isVisible={isVisible}
       animationIn="fadeIn"
       animationOut="fadeOut"
       useNativeDriver
@@ -25,7 +25,8 @@ export const Modal = (props: ModalProps) => {
       deviceHeight={maxDeviceHeight}
       deviceWidth={width}
       backdropOpacity={0.8}
-      style={{ margin: 0 }}
-    />
+      style={{ margin: 0 }}>
+      {children}
+    </RNModal>
   );
 };

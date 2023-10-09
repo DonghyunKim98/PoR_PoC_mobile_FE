@@ -1,8 +1,10 @@
 import { Box, Stack } from '@mobily/stacks';
 import { useNavigation } from '@react-navigation/native';
+import isUndefined from 'lodash/isUndefined';
 import LottieView from 'lottie-react-native';
-import { memo, useState } from 'react';
+import { memo, useRef, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useCountdown, useDidUpdate } from 'rooks';
 
 import {
   AssetBuyScreenNavigationProps,
@@ -16,6 +18,7 @@ import {
   getTextByModalStep,
   getTextColorByStep,
 } from './asset-buy-modal.util';
+import { usePostAssetBuyMutation } from './hooks';
 
 import { Modal, Text } from '@/atoms';
 import { palette } from '@/utils';
@@ -23,19 +26,50 @@ import { palette } from '@/utils';
 type AssetBuyModalProps = {
   isVisible: boolean;
   value: number;
+  onNavigate: () => void;
 };
 
 export const AssetBuyModal = memo<AssetBuyModalProps>(
-  ({ isVisible, value }) => {
+  ({ isVisible, value, onNavigate }) => {
     const [screenStep, setScreenStep] =
       useState<BuyAssetModalStep>('BUY_ASSET');
 
     const navigation = useNavigation<AssetBuyScreenNavigationProps>();
     const {
-      params: { key },
+      params: { key, assetId },
     } = useNavigation<AssetBuyScreenNavigationRouteProps>();
 
+    const [isCountDownEnd, setIsCountDownEnd] = useState(false);
+    const endTimeRef = useRef(new Date(Date.now() + 3000));
+
+    const { mutateAsync, data } = usePostAssetBuyMutation({
+      key,
+      assetId,
+      amount: value.toString(),
+    });
+
+    useDidUpdate(() => {
+      if (isVisible) {
+        mutateAsync();
+      }
+    }, [isVisible]);
+
+    useCountdown(endTimeRef.current, {
+      interval: 1000,
+      onEnd: () => setIsCountDownEnd(true),
+    });
+
+    useDidUpdate(() => {
+      if (!isUndefined(data) && isCountDownEnd) {
+        const { success } = data;
+
+        setScreenStep('CONFIRM_ASSET');
+      }
+    }, [data, isCountDownEnd]);
+
     const handlePressCTA = () => {
+      onNavigate();
+
       navigation.replace('PrimaryStack', {
         screen: 'PrimaryOverTheCounterMarketScreen',
         params: { key },
