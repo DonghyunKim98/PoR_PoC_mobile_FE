@@ -1,7 +1,11 @@
 import { Stack, Box } from '@mobily/stacks';
+import isUndefined from 'lodash/isUndefined';
 import { memo } from 'react';
+import { useController, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Image } from 'react-native';
+
+import { AssetBuyForm } from '../../hooks';
 
 import { Text, TextInput } from '@/atoms';
 import { BasicLayout } from '@/layouts';
@@ -11,11 +15,46 @@ type AssetBuyInputProps = {
   logoUrl: string;
   assetId: string;
   price: number;
-  maxAmount: string;
+  maxAmount: number;
 };
 
 export const AssetBuyInput = memo<AssetBuyInputProps>(
   ({ logoUrl, assetId, price, maxAmount }) => {
+    const { control } = useFormContext<AssetBuyForm>();
+    const {
+      field: { value, onChange },
+      fieldState,
+    } = useController({
+      control,
+      name: 'value',
+      rules: {
+        required: '매수 분량을 입력해주세요',
+        max: {
+          value: maxAmount,
+          message: '매수 가능한 수량이 초과되었습니다',
+        },
+        validate: value => {
+          if (isNaN(value)) {
+            return '숫자만 입력해주세요.';
+          }
+
+          if (value < 0) {
+            return '음수는 입력할 수 없습니다.';
+          }
+
+          // 3. 소수점 두 자리까지만 허용 (부동소수점 오차 고려)
+          const roundedValue = Math.round(value * 100) / 100;
+
+          if (Math.abs(value - roundedValue) > 0.001) {
+            // 부동소수점 오차를 고려한 비교
+            return '소수점 두 자리까지 입력해주세요.';
+          }
+
+          return true; // 유효한 경우
+        },
+      },
+    });
+
     const { t } = useTranslation();
 
     return (
@@ -74,10 +113,10 @@ export const AssetBuyInput = memo<AssetBuyInputProps>(
           </Stack>
           <TextInput
             label={`매도 가능 수량 ${maxAmount} Token`}
-            value={buyValue}
-            onChangeText={setBuyValue}
-            error={false}
-            errorMsg={'매수 가능한 수량이 초과되었습니다'}
+            value={value?.toString()}
+            onChangeText={onChange}
+            error={!isUndefined(fieldState.error)}
+            errorMsg={fieldState.error?.message as string}
           />
         </Stack>
       </BasicLayout>

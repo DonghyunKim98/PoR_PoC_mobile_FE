@@ -1,9 +1,7 @@
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import isUndefined from 'lodash/isUndefined';
-import { useState } from 'react';
 import { FormProvider } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
 
 import { RootStackParamList } from '../root.navigator';
 
@@ -12,7 +10,7 @@ import { useAssetBuyForm } from './hooks';
 
 import { Header } from '@/atoms';
 import { useGetReadAssetsQuery } from '@/hooks';
-import { LoadingPage } from '@/layouts';
+import { LoadingPage, ScrollView } from '@/layouts';
 
 type AssetBuyScreenProps = {};
 
@@ -27,9 +25,6 @@ export type AssetBuyScreenNavigationRouteProps = RouteProp<
 >;
 
 export const AssetBuyScreen = ({}: AssetBuyScreenProps) => {
-  const [buyValue, setBuyValue] = useState('');
-  const { t } = useTranslation();
-
   const {
     params: { key, assetId },
   } = useRoute<AssetBuyScreenNavigationRouteProps>();
@@ -47,16 +42,25 @@ export const AssetBuyScreen = ({}: AssetBuyScreenProps) => {
     return null;
   }
 
+  const { logoUrl, price, maxAmount } = currentAssetData;
+
   return (
     <FormProvider {...methods}>
-      <Header
-        title="토큰 증권 장외 거래소 (매수)"
-        titleColor="primary"
-        leftIconColor="primary"
-        backgroundColor="white"
-      />
-      <AssetBuyInput {...currentAssetData} assetId={assetId} />
-      <AssetBuySubmit />
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <Header
+          title="토큰 증권 장외 거래소 (매수)"
+          titleColor="primary"
+          leftIconColor="primary"
+          backgroundColor="white"
+        />
+        <AssetBuyInput
+          logoUrl={logoUrl}
+          price={price}
+          maxAmount={parseInt(maxAmount)}
+          assetId={assetId}
+        />
+        <AssetBuySubmit />
+      </ScrollView>
     </FormProvider>
   );
 };
