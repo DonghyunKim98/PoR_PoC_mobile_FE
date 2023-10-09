@@ -84,10 +84,10 @@ export const PrimaryOverTheCounterMarketCheckAssetModal =
         }
 
         if (type === 'BUY') {
-          navigation.navigate('AssetBuyScreen');
+          navigation.navigate('AssetBuyScreen', { key, assetId });
           return;
         }
-        navigation.navigate('AssetSellScreen');
+        navigation.navigate('AssetSellScreen', { key, assetId });
       };
 
       return (

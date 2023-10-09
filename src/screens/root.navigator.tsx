@@ -17,8 +17,8 @@ import { LoadingPage } from '@/layouts';
 export type RootStackParamList = {
   StartPoRScreen: undefined;
   AssetPoRConfirmScreen: { key: string; assetId: string };
-  AssetBuyScreen: undefined;
-  AssetSellScreen: undefined;
+  AssetBuyScreen: { key: string; assetId: string };
+  AssetSellScreen: { key: string; assetId: string };
   PrimaryStack: NavigatorScreenParams<PrimaryNavigatorParamLists>;
 };
 
