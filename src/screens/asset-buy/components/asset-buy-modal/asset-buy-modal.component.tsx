@@ -4,6 +4,7 @@ import isUndefined from 'lodash/isUndefined';
 import LottieView from 'lottie-react-native';
 import { memo, useRef, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useRecoilValue } from 'recoil';
 import { useCountdown, useDidMount, useDidUpdate } from 'rooks';
 
 import {
@@ -21,6 +22,7 @@ import {
 import { usePostAssetBuyMutation } from './hooks';
 
 import { Modal, Text } from '@/atoms';
+import { $userKeyState } from '@/states';
 import { palette } from '@/utils';
 
 type AssetBuyModalProps = {
@@ -33,10 +35,11 @@ export const AssetBuyModal = memo<AssetBuyModalProps>(
   ({ isVisible, value, onNavigate }) => {
     const [screenStep, setScreenStep] =
       useState<BuyAssetModalStep>('BUY_ASSET');
+    const { key } = useRecoilValue($userKeyState);
 
     const navigation = useNavigation<AssetBuyScreenNavigationProps>();
     const {
-      params: { key, assetId },
+      params: { assetId },
     } = useRoute<AssetBuyScreenNavigationRouteProps>();
 
     const [isCountDownEnd, setIsCountDownEnd] = useState(false);
@@ -70,7 +73,6 @@ export const AssetBuyModal = memo<AssetBuyModalProps>(
 
       navigation.replace('PrimaryStack', {
         screen: 'PrimaryOverTheCounterMarketScreen',
-        params: { key },
       });
     };
 

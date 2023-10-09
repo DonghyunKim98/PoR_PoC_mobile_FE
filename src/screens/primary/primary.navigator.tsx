@@ -11,12 +11,8 @@ import { PrimaryTabBarIcon } from './primary-tab-bar-icon.component';
 import { palette } from '@/utils';
 
 export type PrimaryNavigatorParamLists = {
-  PrimaryOverTheCounterMarketScreen: {
-    key: string;
-  };
-  PrimaryNewSecurityToken: {
-    key: string;
-  };
+  PrimaryOverTheCounterMarketScreen: undefined;
+  PrimaryNewSecurityToken: undefined;
 };
 
 const Tab = createBottomTabNavigator<PrimaryNavigatorParamLists>();

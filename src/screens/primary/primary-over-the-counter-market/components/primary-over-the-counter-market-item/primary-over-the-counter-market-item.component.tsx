@@ -1,13 +1,10 @@
 import { Box, Stack } from '@mobily/stacks';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, Pressable } from 'react-native';
 
-import {
-  PrimaryOverTheCounterMarketScreenNavigatorProp,
-  PrimaryOverTheCounterMarketScreenRouteProp,
-} from '../../primary-over-the-counter-market.screen';
+import { PrimaryOverTheCounterMarketScreenNavigatorProp } from '../../primary-over-the-counter-market.screen';
 import { PrimaryOverTheCounterMarketCheckAssetModal } from '../primary-over-the-counter-market-check-asset-modal';
 
 import { Text } from '@/atoms';
@@ -49,15 +46,11 @@ export const PrimaryOverTheCounterMarketItem =
 
       const navigation =
         useNavigation<PrimaryOverTheCounterMarketScreenNavigatorProp>();
-      const {
-        params: { key },
-      } = useRoute<PrimaryOverTheCounterMarketScreenRouteProp>();
 
       const { t } = useTranslation();
 
       const handlePressAssetPoRConfirmScreen = () => {
         navigation.navigate('AssetPoRConfirmScreen', {
-          key,
           assetId,
         });
       };

@@ -4,11 +4,11 @@ import {
   CompositeNavigationProp,
   RouteProp,
   useFocusEffect,
-  useRoute,
 } from '@react-navigation/native';
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
+import { useRecoilValue } from 'recoil';
 
 import {
   PrimaryNavigatorParamLists,
@@ -23,6 +23,7 @@ import {
 import { Header } from '@/atoms';
 import { useGetReadAssetsQuery } from '@/hooks';
 import { LoadingPage } from '@/layouts';
+import { $userKeyState } from '@/states';
 import { palette } from '@/utils';
 
 export type PrimaryOverTheCounterMarketScreenNavigatorProp =
@@ -43,9 +44,7 @@ type PrimaryOverTheCounterMarketScreenProps = {};
 
 export const PrimaryOverTheCounterMarketScreen =
   ({}: PrimaryOverTheCounterMarketScreenProps) => {
-    const {
-      params: { key },
-    } = useRoute<PrimaryOverTheCounterMarketScreenRouteProp>();
+    const { key } = useRecoilValue($userKeyState);
 
     const {
       isLoading,

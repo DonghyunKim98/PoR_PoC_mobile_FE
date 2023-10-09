@@ -3,7 +3,10 @@ import { RouteProp, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useTranslation } from 'react-i18next';
 import { Image, TouchableOpacity } from 'react-native';
+import { useRecoilState } from 'recoil';
+import { useDidUpdate } from 'rooks';
 
+import { $userKeyState } from '../../states';
 import { RootStackParamList } from '../root.navigator';
 
 import { usePostNewAssetMutation } from './hooks';
@@ -28,20 +31,25 @@ export type StartPoRScreenNavigationRouteProps = RouteProp<
 >;
 
 export const StartPoRScreen = ({}: StartPoRScreenProps) => {
+  const { t } = useTranslation();
+
   const { mutateAsync, isLoading: isPostingNewAsset } =
     usePostNewAssetMutation();
   const navigation = useNavigation<StartPoRScreenNavigationProps>();
+  const [{ key }, setUserKeyState] = useRecoilState($userKeyState);
 
   useMutationIndicator([isPostingNewAsset]);
 
-  const { t } = useTranslation();
+  useDidUpdate(() => {
+    navigation.navigate('PrimaryStack', {
+      screen: 'PrimaryOverTheCounterMarketScreen',
+    });
+  }, [key]);
 
   const handlePressCTAButton = async () => {
     const { key } = await mutateAsync();
-    navigation.navigate('PrimaryStack', {
-      screen: 'PrimaryOverTheCounterMarketScreen',
-      params: { key },
-    });
+
+    setUserKeyState({ key });
   };
 
   return (

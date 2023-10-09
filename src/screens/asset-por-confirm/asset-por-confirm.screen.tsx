@@ -4,6 +4,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useWindowDimensions } from 'react-native';
+import { useRecoilValue } from 'recoil';
 import { useCountdown } from 'rooks';
 
 import { RootStackParamList } from '../root.navigator';
@@ -20,6 +21,7 @@ import {
 import { Header, Text } from '@/atoms';
 import { useGetPoRForUserQuery } from '@/hooks';
 import { ScrollView } from '@/layouts';
+import { $userKeyState } from '@/states';
 import { palette } from '@/utils';
 
 type AssetPoRConfirmScreenProps = {};
@@ -35,6 +37,8 @@ export type AssetPoRConfirmScreenNavigationRouteProps = RouteProp<
 >;
 
 export const AssetPoRConfirmScreen = ({}: AssetPoRConfirmScreenProps) => {
+  const { key } = useRecoilValue($userKeyState);
+
   const { t } = useTranslation();
   const { width: windowWidth } = useWindowDimensions();
 
@@ -44,7 +48,7 @@ export const AssetPoRConfirmScreen = ({}: AssetPoRConfirmScreenProps) => {
   });
 
   const {
-    params: { key, assetId },
+    params: { assetId },
   } = useRoute<AssetPoRConfirmScreenNavigationRouteProps>();
 
   const { isLoading, data } = useGetPoRForUserQuery({ key, assetId });

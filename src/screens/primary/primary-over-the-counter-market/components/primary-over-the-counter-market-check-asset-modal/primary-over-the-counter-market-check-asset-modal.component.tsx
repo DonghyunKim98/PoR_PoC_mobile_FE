@@ -1,15 +1,13 @@
 import { Box, Stack } from '@mobily/stacks';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { isUndefined } from 'lodash';
 import LottieView from 'lottie-react-native';
 import { memo, useRef, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useRecoilValue } from 'recoil';
 import { useCountdown, useDidUpdate } from 'rooks';
 
-import {
-  PrimaryOverTheCounterMarketScreenNavigatorProp,
-  PrimaryOverTheCounterMarketScreenRouteProp,
-} from '../../primary-over-the-counter-market.screen';
+import { PrimaryOverTheCounterMarketScreenNavigatorProp } from '../../primary-over-the-counter-market.screen';
 
 import {
   CheckAssetModalStep,
@@ -24,6 +22,7 @@ import {
 
 import { Modal, Text } from '@/atoms';
 import { useGetPoRForUserQuery } from '@/hooks';
+import { $userKeyState } from '@/states';
 import { palette } from '@/utils';
 
 type PrimaryOverTheCounterMarketCheckAssetModalProps = {
@@ -40,13 +39,12 @@ export const PrimaryOverTheCounterMarketCheckAssetModal =
         useState<CheckAssetModalStep>('CHECK_ASSET');
       const [isCountDownEnd, setIsCountDownEnd] = useState(false);
 
+      const { key } = useRecoilValue($userKeyState);
+
       const endTimeRef = useRef(new Date(Date.now() + 3000));
 
       const navigation =
         useNavigation<PrimaryOverTheCounterMarketScreenNavigatorProp>();
-      const {
-        params: { key },
-      } = useRoute<PrimaryOverTheCounterMarketScreenRouteProp>();
 
       const { data } = useGetPoRForUserQuery({
         key,
@@ -77,10 +75,10 @@ export const PrimaryOverTheCounterMarketCheckAssetModal =
         }
 
         if (type === 'BUY') {
-          navigation.navigate('AssetBuyScreen', { key, assetId });
+          navigation.navigate('AssetBuyScreen', { assetId });
           return;
         }
-        navigation.navigate('AssetSellScreen', { key, assetId });
+        navigation.navigate('AssetSellScreen', { assetId });
       };
 
       return (

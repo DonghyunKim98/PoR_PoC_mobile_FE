@@ -2,6 +2,7 @@ import { RouteProp, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import isUndefined from 'lodash/isUndefined';
 import { FormProvider } from 'react-hook-form';
+import { useRecoilValue } from 'recoil';
 
 import { RootStackParamList } from '../root.navigator';
 
@@ -11,6 +12,7 @@ import { useAssetBuyForm } from './hooks';
 import { Header } from '@/atoms';
 import { useGetReadAssetsQuery } from '@/hooks';
 import { LoadingPage, ScrollView } from '@/layouts';
+import { $userKeyState } from '@/states';
 
 type AssetBuyScreenProps = {};
 
@@ -25,8 +27,10 @@ export type AssetBuyScreenNavigationRouteProps = RouteProp<
 >;
 
 export const AssetBuyScreen = ({}: AssetBuyScreenProps) => {
+  const { key } = useRecoilValue($userKeyState);
+
   const {
-    params: { key, assetId },
+    params: { assetId },
   } = useRoute<AssetBuyScreenNavigationRouteProps>();
 
   const { isLoading, data } = useGetReadAssetsQuery({ key });

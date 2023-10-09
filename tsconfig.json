@@ -13,6 +13,8 @@
       "@/hooks/*": ["./src/hooks/*"],
       "@/assets": ["./assets"],
       "@/assets/*": ["./assets/*"],
+      "@/states": ["./src/states"],
+      "@/states/*": ["./src/states/*"]
     },
     "esModuleInterop": true,
     "typeRoots": ["./src/types"],
