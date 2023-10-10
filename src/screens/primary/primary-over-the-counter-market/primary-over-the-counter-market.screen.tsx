@@ -50,6 +50,7 @@ export const PrimaryOverTheCounterMarketScreen =
       isLoading,
       data,
       refetch: refetchReadAssetsQuery,
+      isFetching,
     } = useGetReadAssetsQuery({ key });
     const { t } = useTranslation();
 
@@ -59,7 +60,7 @@ export const PrimaryOverTheCounterMarketScreen =
       }, []),
     );
 
-    if (isLoading) {
+    if (isLoading || isFetching) {
       return <LoadingPage />;
     }
 
