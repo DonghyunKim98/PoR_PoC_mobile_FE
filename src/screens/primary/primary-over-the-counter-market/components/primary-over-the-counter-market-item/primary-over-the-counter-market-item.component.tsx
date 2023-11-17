@@ -117,16 +117,13 @@ export const PrimaryOverTheCounterMarketItem =
                   lineHeight={18}
                   color="primary">
                   {t(`SingleAsset_id${assetId}_name`)}
-                  <Text
-                    fontWeight="500"
-                    fontSize="18"
-                    lineHeight={18}
-                    color="primary">
-                    {`(투자계약 증권 ${assetId}호)`}
-                  </Text>
                 </Text>
                 <Stack space={4}>
-                  <ItemPriceContent title="발행량" num={balance} unit={unit} />
+                  <ItemPriceContent
+                    title="발행량"
+                    num={balance}
+                    unit={parseInt(assetId) <= 3 ? 'CBDC' : 'Token'}
+                  />
                   <ItemPriceContent
                     title="현재가"
                     num={price.toString()}
@@ -141,7 +138,11 @@ export const PrimaryOverTheCounterMarketItem =
               alignY="center"
               paddingX={12}
               paddingY={12}>
-              <ItemPriceContent title="내 자산" num={myAsset} unit={unit} />
+              <ItemPriceContent
+                title="내 자산"
+                num={myAsset}
+                unit={parseInt(assetId) <= 3 ? 'CBDC' : 'Token'}
+              />
               <Pressable onPress={handlePressAssetPoRConfirmScreen}>
                 {({ pressed }) => (
                   <Box

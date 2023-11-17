@@ -112,7 +112,7 @@ export const AssetBuyInput = memo<AssetBuyInputProps>(
             </Box>
           </Stack>
           <TextInput
-            label={`매수 가능 수량 ${maxAmount} Token`}
+            label={`매수 가능 수량 ${maxAmount} CBDC`}
             value={value?.toString()}
             onChangeText={onChange}
             error={!isUndefined(fieldState.error)}
