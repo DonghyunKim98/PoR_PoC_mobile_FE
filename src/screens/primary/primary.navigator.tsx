@@ -56,7 +56,7 @@ export const PrimaryNavigator = () => {
         name="PrimaryOverTheCounterMarketScreen"
         component={PrimaryOverTheCounterMarketScreen}
         options={{
-          tabBarLabel: '장외거래소',
+          tabBarLabel: '자산 데이터 확인',
           tabBarIcon: ({ focused }) => <PrimaryTabBarIcon focused={focused} />,
         }}
       />

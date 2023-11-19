@@ -12,7 +12,9 @@ import { getReadAssetsResponseData } from '@/hooks';
 import { addCommasToNumber, palette } from '@/utils';
 
 type PrimaryOverTheCounterMarketItemProps =
-  getReadAssetsResponseData['data'][0];
+  getReadAssetsResponseData['data'][0] & {
+    isCBDC: boolean;
+  };
 
 const ItemPriceContent = ({
   title,
@@ -40,7 +42,17 @@ const ItemPriceContent = ({
 
 export const PrimaryOverTheCounterMarketItem =
   memo<PrimaryOverTheCounterMarketItemProps>(
-    ({ name, logoUrl, unit, myAsset, assetId, balance, price, maxAmount }) => {
+    ({
+      name,
+      logoUrl,
+      unit,
+      myAsset,
+      assetId,
+      balance,
+      price,
+      maxAmount,
+      isCBDC,
+    }) => {
       const [isBuyModalVisible, setIsBuyModalVisible] = useState(false);
       const [isSellModalVisible, setIsSellModalVisible] = useState(false);
 
@@ -170,60 +182,62 @@ export const PrimaryOverTheCounterMarketItem =
                 )}
               </Pressable>
             </Box>
-            <Box direction="row">
-              <Pressable style={{ flex: 1 }} onPress={handlePressSellButton}>
-                {({ pressed }) => (
-                  <Box
-                    alignX="center"
-                    flex="fluid"
-                    paddingY={14}
-                    style={[
-                      {
-                        borderBottomLeftRadius: 5,
-                        borderRightWidth: 1,
-                        borderRightColor: palette['white'],
-                        backgroundColor: palette['gray-700'],
-                      },
-                      pressed && {
-                        backgroundColor: palette['greenBackground'],
-                      },
-                    ]}>
-                    <Text
-                      fontSize="14"
-                      fontWeight="600"
-                      color="white"
-                      lineHeight={20}>
-                      매도
-                    </Text>
-                  </Box>
-                )}
-              </Pressable>
-              <Pressable style={{ flex: 1 }} onPress={handlePressBuyButton}>
-                {({ pressed }) => (
-                  <Box
-                    alignX="center"
-                    flex="fluid"
-                    paddingY={14}
-                    style={[
-                      {
-                        borderBottomRightRadius: 5,
-                        backgroundColor: palette['primary'],
-                      },
-                      pressed && {
-                        backgroundColor: palette['greenBackground'],
-                      },
-                    ]}>
-                    <Text
-                      fontSize="14"
-                      fontWeight="600"
-                      color="white"
-                      lineHeight={20}>
-                      매수
-                    </Text>
-                  </Box>
-                )}
-              </Pressable>
-            </Box>
+            {!isCBDC && (
+              <Box direction="row">
+                <Pressable style={{ flex: 1 }} onPress={handlePressSellButton}>
+                  {({ pressed }) => (
+                    <Box
+                      alignX="center"
+                      flex="fluid"
+                      paddingY={14}
+                      style={[
+                        {
+                          borderBottomLeftRadius: 5,
+                          borderRightWidth: 1,
+                          borderRightColor: palette['white'],
+                          backgroundColor: palette['gray-700'],
+                        },
+                        pressed && {
+                          backgroundColor: palette['greenBackground'],
+                        },
+                      ]}>
+                      <Text
+                        fontSize="14"
+                        fontWeight="600"
+                        color="white"
+                        lineHeight={20}>
+                        매도
+                      </Text>
+                    </Box>
+                  )}
+                </Pressable>
+                <Pressable style={{ flex: 1 }} onPress={handlePressBuyButton}>
+                  {({ pressed }) => (
+                    <Box
+                      alignX="center"
+                      flex="fluid"
+                      paddingY={14}
+                      style={[
+                        {
+                          borderBottomRightRadius: 5,
+                          backgroundColor: palette['primary'],
+                        },
+                        pressed && {
+                          backgroundColor: palette['greenBackground'],
+                        },
+                      ]}>
+                      <Text
+                        fontSize="14"
+                        fontWeight="600"
+                        color="white"
+                        lineHeight={20}>
+                        매수
+                      </Text>
+                    </Box>
+                  )}
+                </Pressable>
+              </Box>
+            )}
           </Box>
         </>
       );

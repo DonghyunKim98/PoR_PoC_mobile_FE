@@ -71,13 +71,13 @@ export const AssetPoRConfirmMyInfoComponent = memo(
                   <Icon
                     name="check-circle"
                     size={30}
-                    color={isCoincided ? palette['white'] : palette['error']}
+                    color={isCoincided ? palette['green'] : palette['error']}
                   />
                   <Text
                     fontSize="12"
                     fontWeight="400"
                     lineHeight={15}
-                    color={isCoincided ? 'white' : 'error'}>
+                    color={isCoincided ? 'green' : 'error'}>
                     {'공표된 자산이\n실제 총자산과'}
                   </Text>
                 </Stack>
@@ -85,8 +85,8 @@ export const AssetPoRConfirmMyInfoComponent = memo(
                   fontWeight="700"
                   fontSize="28"
                   lineHeight={30}
-                  color={isCoincided ? 'white' : 'error'}>
-                  {isCoincided ? '일치 합니다' : '불일치 합니다'}
+                  color={isCoincided ? 'green' : 'error'}>
+                  {isCoincided ? '일치 합니다.' : '불일치 합니다.'}
                 </Text>
               </Stack>
               {/* {!isCoincided && (

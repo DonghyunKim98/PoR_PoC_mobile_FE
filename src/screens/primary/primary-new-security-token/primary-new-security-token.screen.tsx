@@ -6,12 +6,11 @@ import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
 import { useRecoilValue } from 'recoil';
 
+import { PrimaryOverTheCounterMarketItem } from '../primary-over-the-counter-market/components';
 import {
   PrimaryNavigatorParamLists,
   PrimaryNavigatorProps,
 } from '../primary.navigator';
-
-import { PrimaryNewSecurityTokenItem } from './components';
 
 import { Header } from '@/atoms';
 import { useGetReadAssetsQuery } from '@/hooks';
@@ -61,10 +60,10 @@ export const PrimaryNewSecurityTokenScreen =
             paddingHorizontal: 24,
             paddingTop: 10,
           }}
-          data={data.data
-            .sort((a, b) => parseInt(a.assetId) - parseInt(b.assetId))
-            .slice(0, 3)}
-          renderItem={({ item }) => <PrimaryNewSecurityTokenItem {...item} />}
+          data={data.data.slice(3, 5)}
+          renderItem={({ item }) => (
+            <PrimaryOverTheCounterMarketItem {...item} />
+          )}
           ListFooterComponent={<Box style={{ height: 40 }} />}
           ItemSeparatorComponent={() => <Box style={{ height: 20 }} />}
         />

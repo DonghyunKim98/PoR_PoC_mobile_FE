@@ -73,7 +73,7 @@ export const PrimaryOverTheCounterMarketScreen =
           backgroundColor="white"
         />
         <FlatList
-          data={data?.data}
+          data={data?.data.slice(0, 3)}
           style={{
             width: '100%',
             backgroundColor: palette['white'],
@@ -82,7 +82,7 @@ export const PrimaryOverTheCounterMarketScreen =
           }}
           ListHeaderComponent={<PrimaryOverTheCounterMarketBanner />}
           renderItem={({ item }) => (
-            <PrimaryOverTheCounterMarketItem {...item} />
+            <PrimaryOverTheCounterMarketItem {...item} isCBDC />
           )}
           ListFooterComponent={<Box style={{ height: 40 }} />}
           ItemSeparatorComponent={() => <Box style={{ height: 20 }} />}
